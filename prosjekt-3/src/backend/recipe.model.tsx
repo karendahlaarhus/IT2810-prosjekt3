@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+export {};
 
 let Recipe = new Schema({
   id: {
