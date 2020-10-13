@@ -1,11 +1,29 @@
 import React, { Component } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import './styles/App.css';
-import { Recipe } from "Recipe.tsx";
-import { RecipeList } from "RecipeList.tsx";
+import { BrowserRouter as Router, Link } from "react-router-dom";
+import '../styles/App.css';
+import Recipe from "./Recipe";
+import RecipeList from "./RecipeList";
+
+export interface Props {
+  list?: string[]
+}
+
+export interface State {
+  list: string[]
+}
 
 class App extends Component {
+  constructor(props: Props) {
+    super(props);
+    this.state = {
+      list: [
+        "go to the store",
+        "wash the dishes",
+        "Learn some code"
+      ]
+    }
+  }
   render() {
     return (
     <Router>
@@ -20,13 +38,13 @@ class App extends Component {
             </ul>
           </div>
         </nav>
-        <div>
-          <h2>First connection</h2>
-          <p></p>
-        </div>
-        
+      <Recipe></Recipe> 
+      </div>
+      <div>
+      <RecipeList></RecipeList>
       </div>
     </Router>
+    
       
     );
   }
