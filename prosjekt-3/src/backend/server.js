@@ -2,8 +2,6 @@
  * With this code we’re creating an Express server, attaching the cors and body-parser middleware and making the server listening on port 4000
  */
 
-//export {};
-
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
@@ -20,7 +18,6 @@ mongoose.connect(
     useNewUrlParser: true,
   }
 );
-
 const connection = mongoose.connection;
 
 connection.once("open", function () {
@@ -34,6 +31,7 @@ app.listen(PORT, function () {
 const recipeRoutes = express.Router();
 app.use("/recipe", recipeRoutes);
 
+/*
 // Delivering all available recipe items
 recipeRoutes.route("/").get(function (req, res) {
   Recipe.find(function (err, recipe) {
@@ -46,7 +44,7 @@ recipeRoutes.route("/").get(function (req, res) {
   });
 });
 
-// This path extension is used to retrieve a todo item by providing an ID
+ // This path extension is used to retrieve a todo item by providing an ID
 recipeRoutes.route("/:id").get(function (req, res) {
   let id = req.params.id;
   Recipe.findById(id, function (err, recipe) {
@@ -64,4 +62,4 @@ recipeRoutes.put("/:id/:rating").post(function (req, res) {
     .catch((err) => {
       res.status(400).send("adding new rating failed");
     });
-});
+}); */

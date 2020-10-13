@@ -4,21 +4,24 @@ export {};
 
 let Recipe = new Schema({
   id: {
-    type: Number,
+    type: String,
   },
-  title: {
+  name: {
     type: String,
   },
   ingredients: [String],
+  preptime: {
+    type: Number
+  },
   servings: {
     type: Number,
   },
-  vegetarian: {
-    type: Boolean,
+  instructions: {
+    type: String
   },
-  image: {
-    type: String,
-    format: URL,
+
+  tags: {
+    type: [String]
   },
 
   //current average rating
