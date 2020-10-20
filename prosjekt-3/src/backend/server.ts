@@ -6,6 +6,8 @@ import express from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
 import mongoose from "mongoose";
+
+
 import recipeRoutes from "./recipe"
 
 /**
@@ -20,6 +22,15 @@ const app = express();
 const PORT = 4000;
 app.use(cors());
 app.use(bodyParser.json());
+
+// SETUP ENDPOINTS WITH EXPRESS
+// API for uthenting av informasjon
+app.use("/recipe", recipeRoutes);
+
+// Routes
+app.get("/", (req, res) => {
+  res.send("We are on home");
+})
 
 mongoose.connect(
   "mongodb://recipedb:recipedb@it2810-36.idi.ntnu.no:27017/recipedb",
@@ -37,16 +48,12 @@ app.listen(PORT, function () {
   console.log("Server is running on Port: " + PORT);
 });
 
-// Routes
-app.get("/", (req, res) => {
-  res.send("We are on home");
-})
 
 
-// SETUP ENDPOINTS WITH EXPRESS
-app.use("/recipe", recipeRoutes);
 
 
-//Delivering all available items
+
+
+
 
 
