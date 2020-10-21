@@ -6,47 +6,39 @@ import express from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
 import mongoose from "mongoose";
-
-
 import recipeRoutes from "./recipe"
-
-/**
-const express = require("express");
-const bodyParser = require("body-parser");
-const cors = require("cors");
-const mongoose = require("mongoose");
-
- */
-
-const app = express();
 const PORT = 4000;
-app.use(cors());
-app.use(bodyParser.json());
-
-// SETUP ENDPOINTS WITH EXPRESS
-// API for uthenting av informasjon
-app.use("/recipe", recipeRoutes);
-
-// Routes
-app.get("/", (req, res) => {
-  res.send("We are on home");
-})
 
 mongoose.connect(
-  "mongodb://recipedb:recipedb@it2810-36.idi.ntnu.no:27017/recipedb",
+  "mongodb://recipedb:recipedb@it2810-36.idi.ntnu.no:27017/recipedb?authSource=recipedb",
   {
     useNewUrlParser: true,
   }
-);
+).then(() => {
+  const app = express();
+  app.use(cors());
+  app.use(bodyParser.json());
 
+  // API for uthenting av informasjon
+  
+  // Routes
+  app.use("/recipe", recipeRoutes);
+  // Routes
+  app.get("/", (req, res) => {
+    res.send("We are on home");
+  })
+
+  app.listen(PORT, function () {
+  console.log("Server is running on Port: " + PORT);
+});
+
+});
 
 const connection = mongoose.connection;
 connection.once("open", function () {
   console.log("MongoDB database connection established successfully");
 });
-app.listen(PORT, function () {
-  console.log("Server is running on Port: " + PORT);
-});
+
 
 
 
