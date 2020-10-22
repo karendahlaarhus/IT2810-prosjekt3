@@ -6,7 +6,7 @@ import Recipe from "./recipe.model";
     try{
         const recipe = await Recipe.find({});
         res.json(recipe);
-        console.log("hello")
+        
         
        
     }catch (err){

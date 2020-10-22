@@ -24,7 +24,7 @@ class App extends Component {
         <div className="collpase navbar-collapse">
           <ul className="navbar-nav mr-auto">
             <li className="navbar-item">
-              <Link to="/" className="nav-link">All recipes</Link>
+              <Link to="/allrecipes" className="nav-link">All recipes</Link>
             </li>
           </ul>
         </div>
@@ -38,6 +38,7 @@ class App extends Component {
           placeholder="Search for recipes"
         />
       </FormGroup>
+    
      
       <Recipe></Recipe> 
       </div>
