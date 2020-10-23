@@ -14,7 +14,7 @@ const Recipe: React.FC<RecipeProps>= () => {
     }, []);
   
     const getRecipes = async () => {
-      const response = await fetch("http://localhost:4000/recipe");
+      const response = await fetch("http://localhost:4000/recipe/");
       const data = await response.json().catch(err => setErrors(err));
       //console.log("Data: ", data)
       setRecipes(data);

@@ -13,6 +13,7 @@ const RecipeDisplay: React.FC<IRecipeDisplay> = ({
     ingredients, 
     servings
 }) => {
+
     return (
         <div>
             <p>Name: {name}</p>

@@ -1,6 +1,6 @@
 import express from "express";
-const router = express.Router();
 import Recipe from "./recipe.model";
+const router = express.Router();
 
  router.get("/", async (req, res, e) => {
     try{
