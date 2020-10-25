@@ -1,4 +1,4 @@
-// //Actions
+//Actions
 const UPDATE_SEARCH = 'UPDATE_SEARCH';
 
 

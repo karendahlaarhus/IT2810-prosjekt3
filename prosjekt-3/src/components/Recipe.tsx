@@ -4,16 +4,17 @@ import RecipeDisplay from './RecipeDisplay';
 interface RecipeProps {}
 
 
+
 const Recipe: React.FC<RecipeProps>= () => {
     const [hasError, setErrors] = useState(false);
     const [recipes, setRecipes] = useState<any[]>([])
-    //const [recipes, setRecipes] = useState(null);
     useEffect(() => {
       getRecipes();
     }, []);
   
     const getRecipes = async () => {
-      const response = await fetch("http://localhost:4000/recipe/");
+      const searchword = 'chicken'
+      const response = await fetch(`http://localhost:4000/recipe/?name=${searchword}`);
       const data = await response.json().catch(err => setErrors(err));
       //console.log("Data: ", data)
       setRecipes(data);
@@ -26,7 +27,6 @@ const Recipe: React.FC<RecipeProps>= () => {
       <div className="recipes"> 
         {recipes.map((recipes) => (
 
-    
         <div className="recipe">
           <RecipeDisplay
           name={JSON.stringify(recipes.name)}
