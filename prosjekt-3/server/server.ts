@@ -6,18 +6,15 @@ import express from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
 import mongoose from "mongoose";
-import recipeRoutes from "./recipe"
+import recipeRoutes from "./recipeRoutes"
 const PORT = 4000;
 
 mongoose.connect(
   "mongodb://recipedb:recipedb@it2810-36.idi.ntnu.no:27017/recipedb?authSource=recipedb",
-  {
-    useNewUrlParser: true,
-  }
-).then(() => {
-  const app = express();
-  app.use(cors());
-  app.use(bodyParser.json());
+  {useNewUrlParser: true,}).then(() => {
+      const app = express();
+      app.use(cors());
+      app.use(bodyParser.json());
 
   // API for uthenting av informasjon
   

@@ -6,6 +6,7 @@ const rootReducer = combineReducers({
     search: searchReducer,
     sortInfo: sortReducer
   });
-  
-  export default rootReducer;
+
+export type RootState = ReturnType<typeof rootReducer>
+export default rootReducer;
   

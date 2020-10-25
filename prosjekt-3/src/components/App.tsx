@@ -1,10 +1,11 @@
-import React, { Component } from "react";
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import Searchbar from './SearchBar';
 import { BrowserRouter as Router, Link } from "react-router-dom";
 import '../styles/App.css';
 import Recipe from "./Recipe";
-
-
-import { FormGroup, Input } from 'reactstrap';
+import {RootState} from '../store/rootReducer/reducer'
+import { fetchRecipe } from '../store/fetchRecipe';
 
 export interface Props {
   list?: string[]
@@ -14,9 +15,18 @@ export interface State {
   list: string[]
 }
 
-class App extends Component {
+function App() {
+  const dispatch = useDispatch();
+  const search = useSelector((state: RootState) => state.search);
 
-  render() {
+  useEffect(() => {
+    dispatch(
+      fetchRecipe(0, search)
+    );
+    // eslint-disable-next-line
+  }, [search]);
+
+
     return (
     <Router>
       <div className="container">
@@ -31,15 +41,10 @@ class App extends Component {
         </div>
       </nav>
       
-      <FormGroup>
-        <Input
-          type="search"
-          name="search"
-          id="exampleSearch"
-          placeholder="Search for recipes"
-        />
-      </FormGroup>
-    
+      <div className='searchbarContainer'>
+        <Searchbar />
+      </div>
+
      
       <Recipe></Recipe> 
       </div>
@@ -48,6 +53,5 @@ class App extends Component {
       
     );
   }
-}
 
 export default App;

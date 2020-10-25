@@ -1,8 +1,6 @@
-//Actions
-
+// //Actions
 const UPDATE_SEARCH = 'UPDATE_SEARCH';
 
-//Reducer
 
 export default function searchReducer(state = '', action: { type: any; payload: any; }) {
     switch (action.type) {
@@ -13,10 +11,8 @@ export default function searchReducer(state = '', action: { type: any; payload: 
         return state;
     }
   }
-  
 
-  //action creator
-
+  //Action creator
   export function updateSearch(search = '') {
     return {
       type: UPDATE_SEARCH,
