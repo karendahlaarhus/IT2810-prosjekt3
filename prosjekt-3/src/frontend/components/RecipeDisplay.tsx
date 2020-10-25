@@ -3,6 +3,7 @@ import { useState } from "react";
 import Popup from "./Popup";
 import Button from "@material-ui/core/Button";
 import Chip from "@material-ui/core/Chip";
+import { Rating } from "@material-ui/lab";
 
 interface IRecipeDisplay {
   name: string;
@@ -25,26 +26,36 @@ const RecipeDisplay: React.FC<IRecipeDisplay> = ({
 
   return (
     <div>
-      {/* <button className="newButton" onClick={() => setOpenPopup(true)}>{name}</button> */}
+      {/* buttons for recipes, click on button and popup with recipe displays */}
+      <br />
       <Button
         className="newButton"
         onClick={() => setOpenPopup(true)}
         variant="outlined"
+        size="large"
+        style={{
+          textTransform: "lowercase",
+          textAlign: "left",
+        }}
+        fullWidth
       >
         {name.split('"').join("")}
       </Button>
-
+      {/* Popup */}
       <Popup
         title={name.split('"').join("")}
         openPopup={openPopup}
         setOpenPopup={setOpenPopup}
       >
+        <Rating name="simple-controlled" />
+
         <p>
           <b>Number of servings:</b> {servings}
         </p>
         <p>
           <b>Preparation time: </b> {preptime}
         </p>
+
         <p>
           <b>Tags: </b>
           {tags
@@ -58,7 +69,9 @@ const RecipeDisplay: React.FC<IRecipeDisplay> = ({
             ))}
         </p>
         <br></br>
+        {/* flexbox container used to display ingredients and instructions side by side */}
         <div style={{ display: "flex", justifyContent: "space-around" }}>
+          {/* Ingredients: */}
           <div
             style={{
               flexWrap: "nowrap",
@@ -80,6 +93,7 @@ const RecipeDisplay: React.FC<IRecipeDisplay> = ({
                 ))}
             </p>
           </div>
+          {/* Instuctions:  */}
           <div style={{ paddingLeft: "5%" }}>
             <p>
               <b>Instructions:</b>
