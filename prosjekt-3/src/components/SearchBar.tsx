@@ -1,13 +1,23 @@
-import React, { Component } from 'react';
-import TextField from '@material-ui/core/TextField';
+import React from 'react';
+import _ from 'lodash';
+import { useDispatch } from 'react-redux';
+import { updateSearch } from '../store/search';
 
-class SearchBar extends Component {
-
-    render(){
-        return (
-            <TextField id="outlined-basic" label="Outlined" variant="outlined" />
-        );
-    };
-}
-
-export default SearchBar;
+export default function Searchbar() {
+    const dispatch = useDispatch();
+    const delayedQuery = _.debounce(q => dispatch(updateSearch(q)), 500);
+    return (
+        <div className='searchbarContentContainer'>
+          <div className='searchbar'>
+            <input
+              className='searchbarInput'
+              placeholder='Search for recipe . . .'
+              onChange={e => delayedQuery(e.target.value)}
+            />
+            <div className='pokemonDropdownContainer'>
+            </div>
+          </div>
+        </div>
+      );
+    }
+    

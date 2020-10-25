@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import RecipeDisplay from './RecipeDisplay';
-import axios from 'axios';
 
 interface RecipeProps {}
 
@@ -18,12 +17,6 @@ const Recipe: React.FC<RecipeProps>= () => {
       const data = await response.json().catch(err => setErrors(err));
       //console.log("Data: ", data)
       setRecipes(data);
-      //console.log("Data fetched correctly");
-
-  /*     res
-        .json()
-        .then(res => setRecipes(res))
-        .catch(err => setErrors(err)); */
     };
  
    
