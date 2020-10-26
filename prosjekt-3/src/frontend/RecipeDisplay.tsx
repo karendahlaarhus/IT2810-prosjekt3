@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import Popup from "../../components/Popup";
+import Popup from "../components/Popup";
 import Button from "@material-ui/core/Button";
 import Chip from "@material-ui/core/Chip";
 import { Autocomplete, Rating } from "@material-ui/lab";
