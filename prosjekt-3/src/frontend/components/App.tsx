@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Link } from "react-router-dom";
 import "../styles/App.css";
 import Recipe from "./Recipe";
 import SearchIcon from "@material-ui/icons/Search";
+import Chip from "@material-ui/core/Chip";
 
 import { FormGroup, Input } from "reactstrap";
 import { TextField } from "@material-ui/core";

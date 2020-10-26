@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import RecipeDisplay from "./RecipeDisplay";
 import axios from "axios";
+import Chip from "@material-ui/core/Chip";
 
 interface RecipeProps {}
 
