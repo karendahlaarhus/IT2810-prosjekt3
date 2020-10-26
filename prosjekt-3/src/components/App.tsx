@@ -1,22 +1,14 @@
-import React, { Component } from "react";
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Link } from "react-router-dom";
 import '../styles/App.css';
-import Recipe from "./Recipe";
+import {Provider} from 'react-redux';
 
-import { FormGroup, Input } from 'reactstrap';
+import RecipeContainer from './RecipeContainer'
+import store from '../store/store';
 
-export interface Props {
-  list?: string[]
-}
-
-export interface State {
-  list: string[]
-}
-
-class App extends Component {
-
-  render() {
+function App() {
     return (
+    <Provider store={store}>
     <Router>
       <div className="container">
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -30,23 +22,14 @@ class App extends Component {
         </div>
       </nav>
       
-      <FormGroup>
-        <Input
-          type="search"
-          name="search"
-          id="exampleSearch"
-          placeholder="Search for recipes"
-        />
-      </FormGroup>
-    
-     
-      <Recipe></Recipe> 
+      <RecipeContainer />
       </div>
     </Router>
+    </Provider>
+    
     
       
     );
   }
-}
 
 export default App;
