@@ -1,33 +1,14 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import Searchbar from './SearchBar';
 import { BrowserRouter as Router, Link } from "react-router-dom";
 import '../styles/App.css';
-import Recipe from "./Recipe";
-import {RootState} from '../store/rootReducer/reducer'
-import { fetchRecipe } from '../store/fetchRecipe';
+import {Provider} from 'react-redux';
 
-export interface Props {
-  list?: string[]
-}
-
-export interface State {
-  list: string[]
-}
+import RecipeContainer from './RecipeContainer'
+import store from '../store/store';
 
 function App() {
-  const dispatch = useDispatch();
-  const search = useSelector((state: RootState) => state.search);
-
-  useEffect(() => {
-    dispatch(
-      fetchRecipe(0, search)
-    );
-    // eslint-disable-next-line
-  }, [search]);
-
-
     return (
+    <Provider store={store}>
     <Router>
       <div className="container">
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -41,14 +22,11 @@ function App() {
         </div>
       </nav>
       
-      <div className='searchbarContainer'>
-        <Searchbar />
-      </div>
-
-     
-      <Recipe></Recipe> 
+      <RecipeContainer />
       </div>
     </Router>
+    </Provider>
+    
     
       
     );

@@ -6,7 +6,7 @@ import express from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
 import mongoose from "mongoose";
-import recipeRoutes from "./recipeRoutes"
+import recipeRoutes from './recipeRoutes'
 const PORT = 4000;
 
 mongoose.connect(
