@@ -49,7 +49,6 @@ const RecipeDisplay = (props: Props) => {
         `http://localhost:4000/recipe?name=${searchText}`
       );
       const data = await response.json().catch((err) => setError(err));
-      //console.log("Data: ", data)
       setRecipes(data);
     }
     fetchData();

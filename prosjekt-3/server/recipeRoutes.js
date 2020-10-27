@@ -10,10 +10,7 @@ const router = express.Router();
         const skipAmount = req.query.skip ? parseInt(req.query.skip) : 0;
         const limitAmount = req.query.limit && req.query.limit === 'none' ? 151 : 5;
         const search = req.query.name;
-        //const regex = RegExp(search, 'gi');
-        
-       // var query = regex.exec(search);
-        console.log("query", search);
+
 
         if (search) {
             const recipe = await Recipe.find({name: {
