@@ -1,16 +1,14 @@
 import React from 'react'
 
-interface IRecipeDisplay {
-    name: string, 
-    ingredients: Array<String>, 
+interface IRecipeDetail {
+    name: string,
+    ingredients: Array<String>,
     servings: number
 }
 
-
-
-const RecipeDisplay: React.FC<IRecipeDisplay> = ({
-    name, 
-    ingredients, 
+const RecipeDetail: React.FC<IRecipeDetail> = ({
+    name,
+    ingredients,
     servings
 }) => {
     return (
@@ -18,9 +16,9 @@ const RecipeDisplay: React.FC<IRecipeDisplay> = ({
             <p>Name: {name}</p>
             <p>Ingredients: {ingredients}</p>
             <p>Number of servings: {servings}</p>
+            <p>.....</p>
         </div>
     )
 }
 
-export default RecipeDisplay
-
+export default RecipeDetail
