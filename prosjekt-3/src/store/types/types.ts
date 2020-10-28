@@ -20,20 +20,16 @@ export interface initialState{
 
 
 export const SEND_QUERY = 'SEND_QUERY';
+export const UPDATE_TYPE = 'UPDATE_TYPE';
 
 interface sendQuery {
     type: typeof SEND_QUERY
     payload: string
 };
 
-/* interface fetchRecipe {
-    type: typeof FETCH_RECIPES
+interface updateFilter {
+    type: typeof UPDATE_TYPE
     payload: string
 };
 
-interface updateSearch{
-    type: typeof UPDATE_SEARCH
-    payload: SearchState
-} */
-
-export type FrontendActionTypes = sendQuery;
+export type FrontendActionTypes = sendQuery|updateFilter;
