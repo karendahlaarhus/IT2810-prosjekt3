@@ -34,7 +34,7 @@ type PropsFromRedux = ConnectedProps<typeof connector>;
 type Props = PropsFromRedux & {
   text: string;
   sortBy: string;
-  //ascending: boolean;
+  //ascending: boolean; //Hva skrives her?
 };
 
 const RecipeDisplay = (props: Props) => {
@@ -59,16 +59,17 @@ const RecipeDisplay = (props: Props) => {
       const response = await fetch(
         `http://localhost:4000/recipe?name=${searchText}`
       );
-      const data = await response.json().catch((err) => setError(err));
+      const data = await response.json().catch((error) => setError(error));
       //console.log("Data: ", data)
       setRecipes(data);
     }
     fetchData();
   }, [searchText, sortInfo, ascending]);
 
+  console.log("An error occured: ", { error });
+
   return (
     <div>
-      <p>An error occured: {error}</p>
       {recipes.map((recipe) => (
         <>
           <Button
