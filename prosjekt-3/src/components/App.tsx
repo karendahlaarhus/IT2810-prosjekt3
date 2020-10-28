@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { BrowserRouter as Router, Link } from "react-router-dom";
 import "../styles/App.css";
 import { Provider } from "react-redux";

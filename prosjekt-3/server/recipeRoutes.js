@@ -5,29 +5,52 @@ import Recipe from "./recipe.model";
 const router = express.Router();
   
 
- router.get("/", async (req, res, e) => {
+ router.get("/", async (req, res) => {
     try{
         const skipAmount = req.query.skip ? parseInt(req.query.skip) : 0;
-        const limitAmount = req.query.limit && req.query.limit === 'none' ? 151 : 5;
+        const limitAmount = req.query.limit && req.query.limit === 'none' ? 151 : 10;
         const search = req.query.name;
-        //const regex = RegExp(search, 'gi');
-        
-       // var query = regex.exec(search);
-        console.log("query", search);
+        const ascending = req.query.ascending; //Hva skal skrives her? 
+   
+
+
+        function determineSort(_req) {
+            //default sort is alphabetical after recipe name
+            let sortParameter = {name:1};
+
+            //sort desc
+            if (_req.query.ascending == false){
+                console.log('sort by desc');
+                sortParameter = {name:-1};
+            }
+
+            else {
+                console.log('sort by asc')
+            }
+            return sortParameter;
+        }
+ 
+    
+       
 
         if (search) {
+            //console.log("sort key: ", sortKey);
             const recipe = await Recipe.find({name: {
                 $regex: search,
                 $options: "i"
-            }})
-                .skip(skipAmount) 
+            }}) .sort(determineSort(ascending))
+                .skip(skipAmount)
                 .limit(limitAmount);
                 res.json(recipe);
-        }else{
+        }
+        
+        else{
             const recipe = await Recipe.find({})
+            .sort(determineSort(ascending))
             .skip(skipAmount) 
-                .limit(limitAmount);
-                res.json(recipe);
+            .limit(limitAmount);
+            res.json(recipe);
+
         }
     
      

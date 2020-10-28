@@ -1,27 +1,30 @@
 import { Box, Button, Chip, Typography } from "@material-ui/core";
 import { Rating } from "@material-ui/lab";
 import React, { useEffect, useState } from "react";
-import { connect, ConnectedProps, useDispatch, useSelector } from "react-redux";
-import { sendQuery } from "../store/actions/action";
+import { connect, ConnectedProps, useSelector } from "react-redux";
 import { RootState } from "../store/reducers";
 import initialState from "../store/reducers/searchReducer";
 import Popup from "./Popup";
 
 const mapState = (state: typeof initialState) => ({
   text: state.name,
+  ascending: state.name,
+  sortBy: state.name,
 });
 
-interface IRecipeDisplay {
+/* interface IRecipeDisplay {
   name: string;
   ingredients: Array<String>;
   servings: number;
   instructions: Array<String>;
   preptime: number;
   tags: Array<String>;
-}
+} */
 
 const mapDispatch = {
   sendQuery: () => ({ type: "SEND_QUERY" }),
+  ascName: () => ({ type: "ASC_NAME" }),
+  descName: () => ({ type: "DESC_NAME" }),
 };
 
 const connector = connect(mapState, mapDispatch);
@@ -30,17 +33,25 @@ type PropsFromRedux = ConnectedProps<typeof connector>;
 
 type Props = PropsFromRedux & {
   text: string;
+  sortBy: string;
+  //ascending: boolean;
 };
 
 const RecipeDisplay = (props: Props) => {
   const [error, setError] = useState(false);
   const [recipes, setRecipes] = useState<any[]>([]);
-  const [searchWord, setSearchWord] = useState<string[]>([]);
+  //const [searchWord, setSearchWord] = useState<string[]>([]);
   const [openPopup, setOpenPopup] = useState(false);
   const [value, setValue] = React.useState<number | null>(3); //rating value
 
+  // Functionality for searching among the recipe titles
   const searchText = useSelector((state: RootState) => state.recipes.text);
+
   //const recipes: Recipe[] = useSelector((state: RecipiesState) => state.recipes);
+
+  // Functionality for sorting the recipes alphabetically
+  const sortInfo = useSelector((state: RootState) => state.recipes.sortBy);
+  const ascending = useSelector((state: RootState) => state.recipes.ascending);
 
   useEffect(() => {
     async function fetchData() {
@@ -53,10 +64,11 @@ const RecipeDisplay = (props: Props) => {
       setRecipes(data);
     }
     fetchData();
-  }, [searchText]);
+  }, [searchText, sortInfo, ascending]);
 
   return (
     <div>
+      <p>An error occured: {error}</p>
       {recipes.map((recipe) => (
         <>
           <Button

@@ -1,9 +1,9 @@
-import {combineReducers} from 'redux';
-import searchReducer from './searchReducer';
+import { combineReducers } from "redux";
+import searchReducer from "./searchReducer";
 
 const rootReducer = combineReducers({
-    recipes: searchReducer
+  recipes: searchReducer,
 });
 
-export type RootState = ReturnType<typeof rootReducer>
-export default rootReducer
+export type RootState = ReturnType<typeof rootReducer>;
+export default rootReducer;

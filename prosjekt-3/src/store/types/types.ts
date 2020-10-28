@@ -17,23 +17,23 @@ export interface initialState{
 //export const FETCH_RECIPES = 'FETCH_RECIPES';
 // export const UPDATE_SEARCH = 'UPDATE_SEARCH';
 
-
-
-export const SEND_QUERY = 'SEND_QUERY';
+export const SEND_QUERY = "SEND_QUERY";
+export const ASC_NAME = "ASC_NAME";
+export const DESC_NAME = "DESC_NAME";
 
 interface sendQuery {
-    type: typeof SEND_QUERY
-    payload: string
-};
+  type: typeof SEND_QUERY;
+  payload: string;
+}
 
-/* interface fetchRecipe {
-    type: typeof FETCH_RECIPES
-    payload: string
-};
+interface ascName {
+  type: typeof ASC_NAME;
+  payload: string;
+}
 
-interface updateSearch{
-    type: typeof UPDATE_SEARCH
-    payload: SearchState
-} */
+interface descName {
+  type: typeof DESC_NAME;
+  payload: string;
+}
 
-export type FrontendActionTypes = sendQuery;
+export type FrontendActionTypes = sendQuery | ascName | descName;
