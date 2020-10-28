@@ -5,31 +5,21 @@ import { Provider } from "react-redux";
 
 import RecipeContainer from "./RecipeContainer";
 import store from "../store/store";
+import { Typography } from "@material-ui/core";
 
 function App() {
   return (
-    <Provider store={store}>
-      <Router>
-        <div className="container">
-          <nav className="navbar navbar-expand-lg navbar-light bg-light">
-            <Link to="/" className="navbar-brand">
-              Recipe's
-            </Link>
-            <div className="collpase navbar-collapse">
-              <ul className="navbar-nav mr-auto">
-                <li className="navbar-item">
-                  <Link to="/allrecipes" className="nav-link">
-                    All recipes
-                  </Link>
-                </li>
-              </ul>
-            </div>
-          </nav>
-
+    <div style={{ padding: "4vw" }}>
+      <Provider store={store}>
+        <Router>
+          <Typography variant="h4" align="center">
+            Recipe Search
+          </Typography>
+          <br></br>
           <RecipeContainer />
-        </div>
-      </Router>
-    </Provider>
+        </Router>
+      </Provider>
+    </div>
   );
 }
 
