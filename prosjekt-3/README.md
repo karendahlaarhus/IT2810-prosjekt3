@@ -1,44 +1,37 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Oppsett av prosjektet
 
-## Available Scripts
+# Recipe search - IT2810 Prosjekt 3
 
-In the project directory, you can run:
+Recipebase er en nettapplikasjon som gir mulighet til å søke blant tusenvis av oppskrifter. For å finne oppskriften man vil ha kan man søke, sortere og filtrere. Oppskriftene presenteres navn i listeform, og kan trykkes på for å se ingredienser, fremgangsmåte og antall porsjoner. Her har også brukeren mulighet til å legge til en "rating" av oppskriften, og som oppdaterer dette i databasen.
 
-### `yarn start`
+Prosjektet bruker den populære MERN-stacken: MongoDB, Express, React og Node.
+Brukergrensesnitt er basert på React med Typescript, og prosjektet er initialisert med create-react-app --typescript. 
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Serversiden (backend) er
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+Applikasjonen støtter søk etter oppskrifts-navn, filtrering basert på type, samt alfabetisk sortering etter navn. 
 
-### `yarn test`
+Det er også implementert funksjonalitet for brukergenererte vurderinger av oppskriftene, dette blir gjort på en intuitiv måte ved å klikke på det antallet stjerner brukeren mener oppskriften fortjener. Vurderingen lagres deretter persistent i databasen, og blir presentert fra og med neste innlasting.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `yarn build`
+# Frontend
+Brukergrensesnittet vårt er basert på React, Typescript og Redux. React og Typescript er valgt på bakgrunn av kravspesifikasjonene, mens Redux ble valgt da ingen av gruppemedlemmene hadde erfaring med noen form for state management, og undersøkelser på internett ga oss inntrykk av at det var lettere å komme i gang med. 
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## React
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+## Redux
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Material UI
 
-### `yarn eject`
+# Backend
+## Endepunkt
+## MongoDB
+## Nodemon
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+# Testing
+## Enhetstesting
+### Hvordan kjøre testene
+## Automatisert end-to-end testing
+### Hvordan kjøre testene
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+# Dokumentasjon
