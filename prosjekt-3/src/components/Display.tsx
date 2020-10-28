@@ -1,38 +1,21 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useState } from "react";
-import Popup from "../components/Popup";
+import Popup from "./Popup";
 import Button from "@material-ui/core/Button";
 import Chip from "@material-ui/core/Chip";
-import { Rating } from "@material-ui/lab";
+import { Autocomplete, Rating } from "@material-ui/lab";
 import { Box, Typography } from "@material-ui/core";
-import initialState from "../store/reducers/searchReducer";
-import { connect, ConnectedProps, useSelector } from "react-redux";
-import { RootState } from "../store/reducers";
 
 interface IRecipeDisplay {
   name: string;
   ingredients: Array<String>;
-  servings?: number;
+  servings: number;
   instructions: Array<String>;
-  preptime?: number;
+  preptime: number;
   tags: Array<String>;
 }
-const mapState = (state: typeof initialState) => ({
-  text: state.name,
-});
 
-const mapDispatch = {
-  sendQuery: () => ({ type: "SEND_QUERY" }),
-};
-
-const connector = connect(mapState, mapDispatch);
-type PropsFromRedux = ConnectedProps<typeof connector>;
-
-type Props = PropsFromRedux & {
-  text: string;
-};
-
-export const RecipeDisplay: React.FC<IRecipeDisplay> = ({
+const RecipeDisplay: React.FC<IRecipeDisplay> = ({
   name,
   ingredients,
   servings,
@@ -40,25 +23,8 @@ export const RecipeDisplay: React.FC<IRecipeDisplay> = ({
   preptime,
   tags,
 }) => {
-  const [recipes, setRecipes] = useState<any[]>([]);
-  const [searchWord, setSearchWord] = useState<string[]>([]);
   const [openPopup, setOpenPopup] = useState(false);
   const [value, setValue] = React.useState<number | null>(3); //rating value
-  const searchText = useSelector((state: RootState) => state.recipes.text);
-  const [error, setError] = useState(false);
-
-  useEffect(() => {
-    async function fetchData() {
-      console.log(searchText);
-      const response = await fetch(
-        `http://localhost:4000/recipe?name=${searchText}`
-      );
-      const data = await response.json().catch((err) => setError(err));
-      //console.log("Data: ", data)
-      setRecipes(data);
-    }
-    fetchData();
-  }, [searchText]);
 
   return (
     <div>
@@ -161,4 +127,4 @@ export const RecipeDisplay: React.FC<IRecipeDisplay> = ({
   );
 };
 
-export default connector(RecipeDisplay);
+export default RecipeDisplay;
