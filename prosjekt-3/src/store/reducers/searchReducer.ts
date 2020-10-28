@@ -2,12 +2,12 @@ import {SEND_QUERY, UPDATE_TYPE, FrontendActionTypes, } from '../types/types';
 
 interface Recipe {
     text: string;
-    filterChoice: string
+    filterChoice: string[]
 }
 
 const initialState: Recipe = {
     text: '',
-    filterChoice: ''
+    filterChoice: []
 }
 
 export default function searchReducer(state = initialState, action: FrontendActionTypes): Recipe{
@@ -18,19 +18,20 @@ export default function searchReducer(state = initialState, action: FrontendActi
                 text: action.payload,
             } 
         case UPDATE_TYPE:
+            let filterChoice = state.filterChoice.slice();
+            
+            if (filterChoice.some(choice => choice === action.payload)) {
+                filterChoice = filterChoice.filter(choice => choice !== action.payload)
+            } 
+            else {
+                filterChoice.push(action.payload);            
+            }      
             return{
                 ...state,
-                filterChoice: action.payload, 
+                filterChoice
             }
         default:
             return state;
     }
 }
 
-
-/* if (state.includes(action.payload)) {
-    const newState = state.filter(value => value !== action.payload);
-    return newState;
-  }
-  const newState = [...state, action.payload];
-  return newState; */

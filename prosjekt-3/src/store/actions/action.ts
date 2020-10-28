@@ -8,6 +8,7 @@ export function sendQuery(searchQuery: string):FrontendActionTypes{
 }
 
 export function updateFilter(filterType: string):FrontendActionTypes{
+    console.log(filterType)
     return{
         type: UPDATE_TYPE,
         payload: filterType
