@@ -6,7 +6,7 @@ import header from "./foods.jpg";
 
 export default function RecipeContainer() {
   return (
-    <div>
+    <div style={{ padding: "0vw 8vw 0vw 8vw" }}>
       <div style={{ width: "100%", overflow: "hidden", height: "15vw" }}>
         <img
           src={header}
