@@ -6,16 +6,21 @@ import Chip from "@material-ui/core/Chip";
 import { Autocomplete, Rating } from "@material-ui/lab";
 import { Box, Typography } from "@material-ui/core";
 
+const axios = require("axios").default;
+
 interface IRecipeDisplay {
+  _id: number;
   name: string;
   ingredients: Array<String>;
   servings: number;
   instructions: Array<String>;
-  preptime: number;
+  preptime: Array<number>;
+  rating: Array<number>;
   tags: Array<String>;
 }
 
 const RecipeDisplay: React.FC<IRecipeDisplay> = ({
+  _id,
   name,
   ingredients,
   servings,
@@ -25,6 +30,27 @@ const RecipeDisplay: React.FC<IRecipeDisplay> = ({
 }) => {
   const [openPopup, setOpenPopup] = useState(false);
   const [rating, setRating] = React.useState<number | null>(3); //rating value
+
+  //lage state på preptime
+
+  //onSubmit(e: any) {
+
+  // const data = { rating, preptime, _id };
+  // const options = {
+  //   method: "PUT",
+  //   headers: {
+  //     "Content-type": "application/json",
+  //   },
+  //   body: JSON.stringify(data),
+  // };
+  // //fetch("/update/:id", options);
+  // async function fetchData() {
+  //   const response = await fetch(`http://localhost:4000/update/:id`, options);
+  //   const json = await response.json();
+  //   console.log(json);
+  // }
+
+  //fetchData();
 
   return (
     <div>
@@ -56,6 +82,13 @@ const RecipeDisplay: React.FC<IRecipeDisplay> = ({
             value={rating}
             onChange={(event, newRating) => {
               setRating(newRating);
+              const obj = {
+                _id: _id,
+                rating: newRating,
+              };
+              axios
+                .put("http://localhost:4000/Recipe/update/${id}", obj)
+                .then((res: { data: any }) => console.log(res.data));
             }}
           />
         </Box>

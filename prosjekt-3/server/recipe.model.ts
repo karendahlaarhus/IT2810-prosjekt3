@@ -11,7 +11,7 @@ let Recipe = new Schema({
   },
   ingredients: [String],
   preptime: {
-    type: Number
+    type: [Number]
   },
   servings: {
     type: Number,
@@ -26,7 +26,7 @@ let Recipe = new Schema({
 
   //current average rating
   rating: {
-    type: Number,
+    type: [Number],
   },
 
   //number of ratings

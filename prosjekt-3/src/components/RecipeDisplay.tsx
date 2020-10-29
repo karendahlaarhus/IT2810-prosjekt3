@@ -1,11 +1,7 @@
-import { Box, Button, Chip, Typography } from "@material-ui/core";
-import { Rating } from "@material-ui/lab";
 import React, { useEffect, useState } from "react";
 import { connect, ConnectedProps, useDispatch, useSelector } from "react-redux";
-import { sendQuery } from "../store/actions/action";
 import { RootState } from "../store/reducers";
 import initialState from "../store/reducers/searchReducer";
-import Popup from "./Popup";
 import Display from "./Display";
 
 const mapState = (state: typeof initialState) => ({
@@ -33,16 +29,6 @@ type Props = PropsFromRedux & {
 };
 
 const RecipeDisplay = (props: Props) => {
-  //const RecipeDisplay: React.FC<IRecipeDisplay> = ({
-  //class RecipeDisplay extends React.Component<any, IRecipeDisplay> ({
-  //   name,
-  //   ingredients,
-  //   servings,
-  //   instructions,
-  //   tags,
-  // }) => {
-  //const [openPopup, setOpenPopup] = useState(false);
-  //const [value, setValue] = React.useState<number | null>(3); //rating value
   const [error, setError] = useState(false);
   const [recipes, setRecipes] = useState<any[]>([]);
   const [searchWord, setSearchWord] = useState<string[]>([]);
@@ -70,11 +56,13 @@ const RecipeDisplay = (props: Props) => {
       {recipes.map((recipes) => (
         <div className="recipe">
           <Display
+            _id={recipes.id}
             name={JSON.stringify(recipes.name)}
             ingredients={recipes.ingredients}
             servings={recipes.servings}
             instructions={recipes.instructions}
             preptime={recipes.preptime}
+            rating={recipes.rating}
             tags={recipes.tags}
           />
         </div>
