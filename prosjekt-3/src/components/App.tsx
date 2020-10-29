@@ -9,12 +9,9 @@ import { Typography } from "@material-ui/core";
 
 function App() {
   return (
-    <div style={{ padding: "4vw" }}>
+    <div style={{ padding: "0 7vw 0 7vw" }}>
       <Provider store={store}>
         <Router>
-          <Typography variant="h4" align="center">
-            Recipe Search
-          </Typography>
           <br></br>
           <RecipeContainer />
         </Router>

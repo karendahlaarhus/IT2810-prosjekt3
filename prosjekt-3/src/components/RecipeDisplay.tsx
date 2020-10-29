@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { connect, ConnectedProps, useSelector } from "react-redux";
+import { connect, ConnectedProps, useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store/reducers";
 import initialState from "../store/reducers/searchReducer";
 import Display from "./Display";
@@ -59,11 +59,13 @@ const RecipeDisplay = (props: Props) => {
       {recipes.map((recipes) => (
         <div className="recipe">
           <Display
+            _id={recipes.id}
             name={JSON.stringify(recipes.name)}
             ingredients={recipes.ingredients}
             servings={recipes.servings}
             instructions={recipes.instructions}
             preptime={recipes.preptime}
+            rating={recipes.rating}
             tags={recipes.tags}
           />
         </div> 
