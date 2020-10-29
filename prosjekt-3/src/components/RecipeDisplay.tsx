@@ -3,12 +3,11 @@ import { connect, ConnectedProps, useSelector } from "react-redux";
 import { RootState } from "../store/reducers";
 import initialState from "../store/reducers/searchReducer";
 import Display from "./Display";
+import Pagination from '@material-ui/lab/Pagination';
 
 const mapState = (state: typeof initialState) => ({
   text: state.name,
-  //filterChoice: state.?
 });
-
 interface IRecipeDisplay {
   name?: string;
   ingredients?: Array<String>;
@@ -16,10 +15,9 @@ interface IRecipeDisplay {
   instructions?: Array<String>;
   tags?: Array<String>;
 }
-
 const mapDispatch = {
   sendQuery: () => ({ type: "SEND_QUERY" }),
-  //updateFilter: () => ({type: "UPDATE_TYPE"})
+  updateFilter: () => ({type: "UPDATE_TYPE"})
 };
 
 const connector = connect(mapState, mapDispatch);
@@ -28,12 +26,17 @@ type PropsFromRedux = ConnectedProps<typeof connector>;
 
 type Props = PropsFromRedux & {
   text: string;
-  //filterChoice: [];
 };
+
 
 const RecipeDisplay = (props: Props) => {
   const [error, setError] = useState(false);
   const [recipes, setRecipes] = useState<any[]>([]);
+  const [page, setPage] = React.useState(1);
+
+  const handleChange = (event: any, value: React.SetStateAction<number>) => {
+    setPage(value);
+  };
 
   const searchText = useSelector((state: RootState) => state.recipes.text);
   const filters = useSelector((state: RootState) => state.recipes.filterChoice);
@@ -42,13 +45,14 @@ const RecipeDisplay = (props: Props) => {
     async function fetchData() {
       console.log(searchText, filters);
       const response = await fetch(
-        `http://localhost:4000/recipe?name=${searchText}&`
+        `http://localhost:4000/recipe?page=${page}name=${searchText}&tags=${filters}`
       );
       const data = await response.json().catch((err) => setError(err));
       setRecipes(data);
+      
     }
     fetchData();
-  }, [searchText, filters]);
+  }, [page, filters, searchText]);
 
   return (
     <div className="recipes">
@@ -62,10 +66,14 @@ const RecipeDisplay = (props: Props) => {
             preptime={recipes.preptime}
             tags={recipes.tags}
           />
-        </div>
+        </div> 
       ))}
+      <div>
+        <Pagination count={10} page={page} onChange={handleChange}/>
+      </div>
     </div>
   );
 };
 
 export default connector(RecipeDisplay);
+
