@@ -3,7 +3,7 @@ import { useState } from "react";
 import Popup from "./Popup";
 import Button from "@material-ui/core/Button";
 import Chip from "@material-ui/core/Chip";
-import { Autocomplete, Rating } from "@material-ui/lab";
+import { Rating } from "@material-ui/lab";
 import { Box, Typography } from "@material-ui/core";
 
 interface IRecipeDisplay {

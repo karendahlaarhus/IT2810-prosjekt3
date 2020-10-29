@@ -9,16 +9,15 @@ const router = express.Router();
     try{
         const skipAmount = req.query.skip ? parseInt(req.query.skip) : 0;
         const limitAmount = req.query.limit && req.query.limit === 'none' ? 529 : 10;
-        const name = req.query.name ? req.query.name.toLocaleLowerCase() : '';
-        const sort = req.guery.sort;
-        //const tags = req.query.tags
+        const search = req.query.name ? req.query.name.toLowerCase() : '';
+        const tags = []
 
-        if (name) {
+        if (search) {
             const recipe = await Recipe.find({name: {
-                $regex: name,
+                $regex: search,
                 $options: "i"
             }})
-                .sort(sort)
+                //.sort(sort)
                 .skip(skipAmount) 
                 .limit(limitAmount);
                 res.json(recipe);
@@ -28,9 +27,7 @@ const router = express.Router();
                 .limit(limitAmount);
                 res.json(recipe);
         }
-    
-     
-         
+             
     }catch (err){
         res.json({message: err});
     }

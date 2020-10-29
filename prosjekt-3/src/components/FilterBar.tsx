@@ -55,6 +55,16 @@ export const FilterBar = () => {
             onClick={(e) => dispatch(updateFilter(e.currentTarget.value))}>
         Soup
       </Button>
+      <Button
+            variant="contained"
+            color="default"
+            className='filterButton'
+            id='soup'
+            value='soup'
+            onClick={(e) => dispatch(updateFilter(e.currentTarget.value))}>
+        Sides
+      </Button>
+
 
     </div>
     
