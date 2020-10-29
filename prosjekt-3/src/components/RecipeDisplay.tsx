@@ -1,13 +1,12 @@
-import { Box, Button, Chip, Typography } from "@material-ui/core";
-import { Rating } from "@material-ui/lab";
 import React, { useEffect, useState } from "react";
-import { connect, ConnectedProps, useDispatch, useSelector } from "react-redux";
+import { connect, ConnectedProps, useSelector } from "react-redux";
 import { RootState } from "../store/reducers";
 import initialState from "../store/reducers/searchReducer";
 import Display from "./Display";
 
 const mapState = (state: typeof initialState) => ({
   text: state.name,
+  filterChoice: state.length
 });
 
 interface IRecipeDisplay {
@@ -20,6 +19,7 @@ interface IRecipeDisplay {
 
 const mapDispatch = {
   sendQuery: () => ({ type: "SEND_QUERY" }),
+  updateFilter: () => ({type: "UPDATE_TYPE"})
 };
 
 const connector = connect(mapState, mapDispatch);
@@ -28,29 +28,30 @@ type PropsFromRedux = ConnectedProps<typeof connector>;
 
 type Props = PropsFromRedux & {
   text: string;
+  filterChoice: [];
 };
 
 const RecipeDisplay = (props: Props) => {
   const [error, setError] = useState(false);
   const [recipes, setRecipes] = useState<any[]>([]);
-  const [searchWord, setSearchWord] = useState<string[]>([]);
+/*   const [searchWord, setSearchWord] = useState<string[]>([]);
   const [openPopup, setOpenPopup] = useState(false);
-  const [value, setValue] = React.useState<number | null>(3); //rating value
+  const [value, setValue] = React.useState<number | null>(3); //rating value */
 
   const searchText = useSelector((state: RootState) => state.recipes.text);
-  //const recipes: Recipe[] = useSelector((state: RecipiesState) => state.recipes);
+  const filters = useSelector((state: RootState) => state.recipes.filterChoice);
 
   useEffect(() => {
     async function fetchData() {
-      console.log(searchText);
+      console.log(searchText, filters);
       const response = await fetch(
-        `http://localhost:4000/recipe?name=${searchText}`
+        `http://localhost:4000/recipe?name=${searchText}&tags=${filters}`
       );
       const data = await response.json().catch((err) => setError(err));
       setRecipes(data);
     }
     fetchData();
-  }, [searchText]);
+  }, [searchText, filters]);
 
   return (
     <div className="recipes">
