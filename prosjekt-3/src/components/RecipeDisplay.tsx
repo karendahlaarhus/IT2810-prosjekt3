@@ -57,7 +57,7 @@ const RecipeDisplay = (props: Props) => {
     async function fetchData() {
       console.log(searchText);
       const response = await fetch(
-        `http://localhost:4000/recipe?name=${searchText}`
+        `http://localhost:4000/recipe?name=${searchText}&sortBy=${sortInfo}&sortOrder=${ascending}`
       );
       const data = await response.json().catch((error) => setError(error));
       //console.log("Data: ", data)
