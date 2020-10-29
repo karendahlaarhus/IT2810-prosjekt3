@@ -26,7 +26,7 @@ router.route("/:id").get(function (req, res) {
  router.get("/", async (req, res, e) => {
     try{
         const page = req.query.page;
-        const limit = req.query.limit && req.query.limit === 'none' ? 529 : 20;
+        const limit = req.query.limit && req.query.limit === 'none' ? 529 : 10;
         const skip = ((parseInt(page)-1) * 20);
         const search = req.query.name ? req.query.name.toLowerCase() : '';
         const tags = req.query.tags.toString();

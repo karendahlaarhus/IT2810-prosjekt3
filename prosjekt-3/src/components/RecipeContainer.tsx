@@ -1,4 +1,3 @@
-<<<<<<< prosjekt-3/src/components/RecipeContainer.tsx
 import SearchBar from './SearchBar'
 import FilterBar from './FilterBar'
 import React from 'react'

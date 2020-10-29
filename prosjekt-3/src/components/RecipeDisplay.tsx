@@ -7,6 +7,7 @@ import Pagination from '@material-ui/lab/Pagination';
 
 const mapState = (state: typeof initialState) => ({
   text: state.name,
+  //filterChoice: state.tags
 });
 interface IRecipeDisplay {
   name?: string;
@@ -17,7 +18,7 @@ interface IRecipeDisplay {
 }
 const mapDispatch = {
   sendQuery: () => ({ type: "SEND_QUERY" }),
-  updateFilter: () => ({type: "UPDATE_TYPE"})
+  //updateFilter: () => ({type: "UPDATE_TYPE"})
 };
 
 const connector = connect(mapState, mapDispatch);
@@ -52,7 +53,7 @@ const RecipeDisplay = (props: Props) => {
       
     }
     fetchData();
-  }, [page, filters, searchText]);
+  }, [page, searchText, filters]);
 
   return (
     <div className="recipes">
@@ -71,7 +72,7 @@ const RecipeDisplay = (props: Props) => {
         </div> 
       ))}
       <div>
-        <Pagination count={10} page={page} onChange={handleChange}/>
+        <Pagination count={5} page={page} onChange={handleChange}/>
       </div>
     </div>
   );
