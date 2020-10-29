@@ -1,37 +1,48 @@
 import express from "express";
+import { monitorEventLoopDelay } from "perf_hooks";
 import Recipe from "./recipe.model";
 
 const router = express.Router();
 
 router.route("/update/:id").put(function (req, res) {
-  let id = req.params._id;
-  Recipe.findById(id, function (err, recipe) {
-    if (!recipe) {
-      res.status(404).send("Data is not found");
-    } else {
-      const rating = req.body.rating;
-      if (rating !== null && rating !== "") {
-        const oldRating = [...book.rating];
-        book.rating = [...oldRating, rating];
-      }
-      Recipe.save()
-        .then((recipe) => {
-          res.json("Book review rating given: " + rating);
-          console.log(rating);
-        })
-        .catch((err) => {
-          res.status(400).send("Rating not given");
-        });
-    }
+  console.log(req.body); //vil lagre denne verdien til databasen
+  const filter = { id: req.body._id };
+  const update = { preptime: req.body.preptime };
+  Recipe.findOneAndUpdate(filter, update, {
+    new: true,
+  }).then((data) => {
+    console.log("hei");
+    res.json(data);
   });
 });
 
 router.route("/:id").get(function (req, res) {
   let id = req.params.id;
-  Recipe.findById(id, function (err, recipe) {
+  Recipe.find({ id }, function (err, recipe) {
     res.json(recipe);
   });
 });
+
+// let id = req.params._id;
+// console.log(id);
+// Recipe.findById(id, function (err, recipe) {
+//   const rating = req.body.rating;
+//   if (rating !== null && rating !== "") {
+//     //preptime = recipe.rating;
+//     const oldRating = [...Recipe.rating];
+//     Recipe.rating = [...oldRating, rating];
+//   }
+//   Recipe.save()
+//     .then((recipe) => {
+//       res.json("Rating" + rating);
+//       console.log(rating);
+//     })
+//     .catch((err) => {
+//       res.status(400).send("Rating not given");
+//     });
+// });
+
+//for å hente ut kun et element
 
 router.get("/", async (req, res, e) => {
   try {

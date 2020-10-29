@@ -26,7 +26,7 @@ let Recipe = new Schema({
 
   //current average rating
   rating: {
-    type: [Number],
+    type: Number,
   },
 
   //number of ratings

@@ -5,7 +5,7 @@
 import express from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
-import mongoose from "mongoose";
+import mongoose, { mongo } from "mongoose";
 import recipeRoutes from './recipeRoutes'
 import { connect } from "http2";
 import Recipe from "./recipe.model";
@@ -20,7 +20,6 @@ mongoose.connect(
       app.use(bodyParser.json());
 
   // API for uthenting av informasjon
-
 
   // Routes
   app.use("/recipe", recipeRoutes);
