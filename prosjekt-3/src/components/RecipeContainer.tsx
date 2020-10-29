@@ -1,8 +1,11 @@
-import SearchBar from "./SearchBar";
-import React from "react";
-import RecipeDisplay from "./RecipeDisplay";
+<<<<<<< prosjekt-3/src/components/RecipeContainer.tsx
+import SearchBar from './SearchBar'
+import FilterBar from './FilterBar'
+import React from 'react'
+import RecipeDisplay from './RecipeDisplay'
 import { Typography } from "@material-ui/core";
 import header from "./foods.jpg";
+
 
 export default function RecipeContainer() {
   return (
@@ -30,7 +33,9 @@ export default function RecipeContainer() {
       </Typography>
       <br></br>
       <SearchBar />
-      <RecipeDisplay></RecipeDisplay>
+      <FilterBar/>
+      <RecipeDisplay />
+      
     </div>
   );
 }

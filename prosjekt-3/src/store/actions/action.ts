@@ -1,4 +1,4 @@
-import { FrontendActionTypes, SEND_QUERY} from "../types/types";
+import { FrontendActionTypes, SEND_QUERY, UPDATE_TYPE} from "../types/types";
 
 export function sendQuery(searchQuery: string):FrontendActionTypes{
     return{
@@ -6,3 +6,12 @@ export function sendQuery(searchQuery: string):FrontendActionTypes{
         payload: searchQuery
     }
 }
+
+export function updateFilter(filterType: string):FrontendActionTypes{
+    console.log(filterType)
+    return{
+        type: UPDATE_TYPE,
+        payload: filterType
+    }
+}
+

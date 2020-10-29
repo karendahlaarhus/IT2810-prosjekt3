@@ -3,11 +3,11 @@ import { connect, ConnectedProps, useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store/reducers";
 import initialState from "../store/reducers/searchReducer";
 import Display from "./Display";
+import Pagination from '@material-ui/lab/Pagination';
 
 const mapState = (state: typeof initialState) => ({
   text: state.name,
 });
-
 interface IRecipeDisplay {
   name?: string;
   ingredients?: Array<String>;
@@ -15,9 +15,9 @@ interface IRecipeDisplay {
   instructions?: Array<String>;
   tags?: Array<String>;
 }
-
 const mapDispatch = {
   sendQuery: () => ({ type: "SEND_QUERY" }),
+  updateFilter: () => ({type: "UPDATE_TYPE"})
 };
 
 const connector = connect(mapState, mapDispatch);
@@ -28,28 +28,31 @@ type Props = PropsFromRedux & {
   text: string;
 };
 
+
 const RecipeDisplay = (props: Props) => {
   const [error, setError] = useState(false);
   const [recipes, setRecipes] = useState<any[]>([]);
-  const [searchWord, setSearchWord] = useState<string[]>([]);
-  const [openPopup, setOpenPopup] = useState(false);
-  const [value, setValue] = React.useState<number | null>(3); //rating value
+  const [page, setPage] = React.useState(1);
+
+  const handleChange = (event: any, value: React.SetStateAction<number>) => {
+    setPage(value);
+  };
 
   const searchText = useSelector((state: RootState) => state.recipes.text);
-  //const recipes: Recipe[] = useSelector((state: RecipiesState) => state.recipes);
+  const filters = useSelector((state: RootState) => state.recipes.filterChoice);
 
   useEffect(() => {
     async function fetchData() {
-      console.log(searchText);
+      console.log(searchText, filters);
       const response = await fetch(
-        `http://localhost:4000/recipe?name=${searchText}`
+        `http://localhost:4000/recipe?page=${page}name=${searchText}&tags=${filters}`
       );
       const data = await response.json().catch((err) => setError(err));
-      //console.log("Data: ", data)
       setRecipes(data);
+      
     }
     fetchData();
-  }, [searchText]);
+  }, [page, filters, searchText]);
 
   return (
     <div className="recipes">
@@ -65,10 +68,14 @@ const RecipeDisplay = (props: Props) => {
             rating={recipes.rating}
             tags={recipes.tags}
           />
-        </div>
+        </div> 
       ))}
+      <div>
+        <Pagination count={10} page={page} onChange={handleChange}/>
+      </div>
     </div>
   );
 };
 
 export default connector(RecipeDisplay);
+

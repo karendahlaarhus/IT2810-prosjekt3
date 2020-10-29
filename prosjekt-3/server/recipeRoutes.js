@@ -3,7 +3,7 @@ import { monitorEventLoopDelay } from "perf_hooks";
 import Recipe from "./recipe.model";
 
 const router = express.Router();
-
+  
 router.route("/update/:id").put(function (req, res) {
   console.log(req.body); //vil lagre denne verdien til databasen
   const filter = { id: req.body._id };
@@ -22,6 +22,47 @@ router.route("/:id").get(function (req, res) {
     res.json(recipe);
   });
 });
+
+ router.get("/", async (req, res, e) => {
+    try{
+        const page = req.query.page;
+        const limit = req.query.limit && req.query.limit === 'none' ? 529 : 20;
+        const skip = ((parseInt(page)-1) * 20);
+        const search = req.query.name ? req.query.name.toLowerCase() : '';
+        const tags = req.query.tags.toString();
+        const filter = {};
+        
+        if (tags.length !== 0) {
+            filter.$and = [
+              { tags: { $in: tags } }, 
+              { name: {
+                  $regex: search,
+                  $options: 'i'}}
+              ];
+          } 
+          else {
+            filter.name = {
+            $regex: search,
+            $options: 'i'
+          };
+        }
+      
+        if(filter) {
+          const recipe = await Recipe.find(filter)
+              .skip(skip)
+              .limit(limit)
+              res.json(recipe);
+          }
+        else{
+          const recipe = await Recipe.find()
+            .skip(skip) 
+            .limit(limit)
+            res.json(recipe);
+        }}
+        catch (err){
+        res.json({message: err});
+      }
+  });
 
 // let id = req.params._id;
 // console.log(id);
@@ -43,34 +84,5 @@ router.route("/:id").get(function (req, res) {
 // });
 
 //for å hente ut kun et element
-
-router.get("/", async (req, res, e) => {
-  try {
-    const skipAmount = req.query.skip ? parseInt(req.query.skip) : 0;
-    const limitAmount = req.query.limit && req.query.limit === "none" ? 151 : 5;
-    const search = req.query.name;
-    //const regex = RegExp(search, 'gi');
-
-    // var query = regex.exec(search);
-    console.log("query", search);
-
-    if (search) {
-      const recipe = await Recipe.find({
-        name: {
-          $regex: search,
-          $options: "i",
-        },
-      })
-        .skip(skipAmount)
-        .limit(limitAmount);
-      res.json(recipe);
-    } else {
-      const recipe = await Recipe.find({}).skip(skipAmount).limit(limitAmount);
-      res.json(recipe);
-    }
-  } catch (err) {
-    res.json({ message: err });
-  }
-});
 
 export default router;
