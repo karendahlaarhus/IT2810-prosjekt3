@@ -20,6 +20,8 @@ export interface initialState{
 export const SEND_QUERY = "SEND_QUERY";
 export const ASC_NAME = "ASC_NAME";
 export const DESC_NAME = "DESC_NAME";
+export const DESC_SERVINGS = "DESC_SERVINGS";
+export const ASC_SERVINGS = "ASC_SERVINGS";
 
 interface sendQuery {
   type: typeof SEND_QUERY;
@@ -36,4 +38,19 @@ interface descName {
   payload: string;
 }
 
-export type FrontendActionTypes = sendQuery | ascName | descName;
+interface ascServings {
+  type: typeof ASC_SERVINGS;
+  payload: string;
+}
+
+interface descServings {
+  type: typeof DESC_SERVINGS;
+  payload: string;
+}
+
+export type FrontendActionTypes =
+  | sendQuery
+  | ascName
+  | descName
+  | descServings
+  | ascServings;

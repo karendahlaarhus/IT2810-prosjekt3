@@ -2,6 +2,8 @@ import {
   SEND_QUERY,
   ASC_NAME,
   DESC_NAME,
+  DESC_SERVINGS,
+  ASC_SERVINGS,
   FrontendActionTypes,
 } from "../types/types";
 
@@ -11,7 +13,7 @@ interface Recipe {
   ascending: boolean;
 }
 
-const initialState: Recipe = {
+export const initialState: Recipe = {
   text: "",
   sortBy: "",
   ascending: true,
@@ -35,17 +37,23 @@ export default function searchReducer(
       };
     case DESC_NAME:
       return { ...state, sortBy: "name", ascending: false };
+    case ASC_SERVINGS:
+      return { ...state, sortBy: "servings", ascending: true };
+    case DESC_SERVINGS:
+      return { ...state, sortBy: "servings", ascending: false };
     default:
       return state;
   }
 }
 
 //Creating available actions for sorting
-export function fireAction(sortBy = "name", ascending = true) {
+export function fireAction(sortBy = "name", ascending = false) {
   const payload = { sortBy, ascending };
   switch (sortBy) {
     case "name":
       return { type: ascending ? ASC_NAME : DESC_NAME, payload };
+    case "servings":
+      return { type: ascending ? ASC_SERVINGS : DESC_SERVINGS, payload };
     default:
       return;
   }

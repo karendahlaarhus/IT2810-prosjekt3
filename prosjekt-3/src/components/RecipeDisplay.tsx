@@ -3,28 +3,30 @@ import { Rating } from "@material-ui/lab";
 import React, { useEffect, useState } from "react";
 import { connect, ConnectedProps, useSelector } from "react-redux";
 import { RootState } from "../store/reducers";
-import initialState from "../store/reducers/searchReducer";
+import { initialState } from "../store/reducers/searchReducer";
 import Popup from "./Popup";
 import Display from "./Display";
 
 const mapState = (state: typeof initialState) => ({
-  text: state.name,
-  ascending: state.name, //Hva skal skrives her?
-  sortBy: state.name,
+  text: state.text,
+  ascending: state.ascending, //Hva skal skrives her?
+  sortBy: state.sortBy,
 });
 
-interface IRecipeDisplay {
+/* interface IRecipeDisplay {
   name: string;
   ingredients?: Array<String>;
   servings?: number;
   instructions?: Array<String>;
   tags?: Array<String>;
-}
+} */
 
 const mapDispatch = {
   sendQuery: () => ({ type: "SEND_QUERY" }),
   ascName: () => ({ type: "ASC_NAME" }),
   descName: () => ({ type: "DESC_NAME" }),
+  ascServings: () => ({ type: "ASC_SERVINGs" }),
+  descServings: () => ({ type: "DESC_SERVINGS" }),
 };
 
 const connector = connect(mapState, mapDispatch);
@@ -34,7 +36,7 @@ type PropsFromRedux = ConnectedProps<typeof connector>;
 type Props = PropsFromRedux & {
   text: string;
   sortBy: string;
-  //ascending: boolean; //Hva skrives her?
+  ascending: boolean; //Hva skrives her?
 };
 
 const RecipeDisplay = (props: Props) => {

@@ -1,11 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { fireAction } from "../store/reducers/sortReducer";
-
-/* interface SortState {
-    selectedValue: string;
-}
- */
+import { fireAction } from "../store/reducers/searchReducer";
 
 export default function SortBar() {
   const dispatch = useDispatch();
@@ -14,7 +9,7 @@ export default function SortBar() {
    * Sends the value from the drop down sort menu to Redux
    */
   const handleSortOption = (optionValue: string) => {
-    const optionArray = optionValue.split(" ");
+    var optionArray = optionValue.split(" ");
     var boolean = optionArray.includes("asc") ? true : false;
     dispatch(fireAction(optionArray[0], boolean));
 
@@ -27,8 +22,11 @@ export default function SortBar() {
         <option value="" disabled selected>
           Sort by
         </option>
-        <option value="name asc">Alphabet - A-Z</option>
+        {/* Ascending values are not working for some reason ..  */}
+        {/* <option value="name asc">Alphabet - A-Z</option> */}
         <option value="name desc">Alphabet - Z-A</option>
+        {/* <option value="servings asc">Servings - ascending </option> */}
+        <option value="servings desc">Servings - descending</option>
       </select>
     </div>
   );
