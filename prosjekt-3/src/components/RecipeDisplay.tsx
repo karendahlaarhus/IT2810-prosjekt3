@@ -9,7 +9,7 @@ import Display from "./Display";
 
 const mapState = (state: typeof initialState) => ({
   text: state.name,
-  ascending: state.name,
+  ascending: state.name, //Hva skal skrives her?
   sortBy: state.name,
 });
 
@@ -63,11 +63,22 @@ const RecipeDisplay = (props: Props) => {
   const sortInfo = useSelector((state: RootState) => state.recipes.sortBy);
   const ascending = useSelector((state: RootState) => state.recipes.ascending);
 
+  function sortOrderToString(sortOrder: boolean) {
+    let order = "";
+    if (sortOrder) {
+      order = "asc";
+    } else {
+      order = "desc";
+    }
+    return order;
+  }
+
   useEffect(() => {
     async function fetchData() {
+      let sortOrder = sortOrderToString(ascending);
       console.log(searchText);
       const response = await fetch(
-        `http://localhost:4000/recipe?name=${searchText}&sortBy=${sortInfo}&sortOrder=${ascending}`
+        `http://localhost:4000/recipe?name=${searchText}&sortBy=${sortInfo}&sortOrder=${sortOrder}`
       );
       const data = await response.json().catch((error) => setError(error));
       //console.log("Data: ", data)
