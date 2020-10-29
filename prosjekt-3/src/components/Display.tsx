@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import Popup from "../components/Popup";
+import Popup from "./Popup";
 import Button from "@material-ui/core/Button";
 import Chip from "@material-ui/core/Chip";
 import { Autocomplete, Rating } from "@material-ui/lab";
@@ -24,7 +24,7 @@ const RecipeDisplay: React.FC<IRecipeDisplay> = ({
   tags,
 }) => {
   const [openPopup, setOpenPopup] = useState(false);
-  const [value, setValue] = React.useState<number | null>(3); //rating value
+  const [rating, setRating] = React.useState<number | null>(3); //rating value
 
   return (
     <div>
@@ -50,12 +50,12 @@ const RecipeDisplay: React.FC<IRecipeDisplay> = ({
         setOpenPopup={setOpenPopup}
       >
         <Box component="fieldset" mb={3} borderColor="transparent">
-          <Typography component="legend">Controlled</Typography>
+          <Typography component="legend">Rating</Typography>
           <Rating
             name="simple-controlled"
-            value={value}
-            onChange={(event, newValue) => {
-              setValue(newValue);
+            value={rating}
+            onChange={(event, newRating) => {
+              setRating(newRating);
             }}
           />
         </Box>

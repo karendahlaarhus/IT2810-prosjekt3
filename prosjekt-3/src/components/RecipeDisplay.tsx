@@ -5,6 +5,7 @@ import { connect, ConnectedProps, useSelector } from "react-redux";
 import { RootState } from "../store/reducers";
 import initialState from "../store/reducers/searchReducer";
 import Popup from "./Popup";
+import Display from "./Display";
 
 const mapState = (state: typeof initialState) => ({
   text: state.name,
@@ -12,6 +13,7 @@ const mapState = (state: typeof initialState) => ({
   sortBy: state.name,
 });
 
+<<<<<<< HEAD
 /* interface IRecipeDisplay {
   name: string;
   ingredients: Array<String>;
@@ -20,6 +22,15 @@ const mapState = (state: typeof initialState) => ({
   preptime: number;
   tags: Array<String>;
 } */
+=======
+interface IRecipeDisplay {
+  name?: string;
+  ingredients?: Array<String>;
+  servings?: number;
+  instructions?: Array<String>;
+  tags?: Array<String>;
+}
+>>>>>>> dev
 
 const mapDispatch = {
   sendQuery: () => ({ type: "SEND_QUERY" }),
@@ -38,6 +49,16 @@ type Props = PropsFromRedux & {
 };
 
 const RecipeDisplay = (props: Props) => {
+  //const RecipeDisplay: React.FC<IRecipeDisplay> = ({
+  //class RecipeDisplay extends React.Component<any, IRecipeDisplay> ({
+  //   name,
+  //   ingredients,
+  //   servings,
+  //   instructions,
+  //   tags,
+  // }) => {
+  //const [openPopup, setOpenPopup] = useState(false);
+  //const [value, setValue] = React.useState<number | null>(3); //rating value
   const [error, setError] = useState(false);
   const [recipes, setRecipes] = useState<any[]>([]);
   //const [searchWord, setSearchWord] = useState<string[]>([]);
@@ -69,105 +90,18 @@ const RecipeDisplay = (props: Props) => {
   console.log("An error occured: ", { error });
 
   return (
-    <div>
-      {recipes.map((recipe) => (
-        <>
-          <Button
-            className="newButton"
-            onClick={() => setOpenPopup(true)}
-            variant="outlined"
-            size="large"
-            style={{
-              textTransform: "lowercase",
-              textAlign: "left",
-            }}
-            fullWidth
-          >
-            {recipe.name.split('"').join("")}
-          </Button>
-          {/* Popup */}
-
-          <Popup
-            title={recipe.name.split('"').join("")}
-            openPopup={openPopup}
-            setOpenPopup={setOpenPopup}
-          >
-            <Box component="fieldset" mb={3} borderColor="transparent">
-              <Typography component="legend">Controlled</Typography>
-              <Rating
-                name="simple-controlled"
-                value={value}
-                onChange={(event, newValue) => {
-                  setValue(newValue);
-                }}
-              />
-            </Box>
-
-            <p>
-              <b>Number of servings:</b> {recipe.servings}
-            </p>
-            <p>
-              <b>Preparation time: </b> {recipe.preptime}
-            </p>
-
-            <p>
-              <b>Tags: </b>
-              {recipe.tags
-                .toString()
-                .split(",")
-                .map((item: React.ReactNode) => (
-                  <>
-                    {" "}
-                    <Chip label={item} />{" "}
-                  </>
-                ))}
-            </p>
-            <br></br>
-            {/* flexbox container used to display ingredients and instructions side by side */}
-            <div style={{ display: "flex", justifyContent: "space-around" }}>
-              {/* Ingredients: */}
-              <div
-                style={{
-                  flexWrap: "nowrap",
-                  paddingRight: "2%",
-                  width: "40%",
-                  borderRight: "1px solid black",
-                }}
-              >
-                <p>
-                  <b>Ingredients:</b> <br />
-                  {recipe.ingredients
-                    .toString()
-                    .split(",")
-                    .map((item: any) => (
-                      <>
-                        {" "}
-                        {item} <br />{" "}
-                      </>
-                    ))}
-                </p>
-              </div>
-              {/* Instuctions:  */}
-              <div style={{ paddingLeft: "5%" }}>
-                <p>
-                  <b>Instructions:</b>
-                  <br />{" "}
-                  {recipe.instructions
-                    .toString()
-                    .split(".")
-                    .map((el: any) => (
-                      <>
-                        {" "}
-                        {el} <br />
-                        <br />{" "}
-                      </>
-                    ))}
-                </p>
-              </div>
-            </div>
-          </Popup>
-          <br></br>
-        </>
+    <div className="recipes">
+      {recipes.map((recipes) => (
+        <div className="recipe">
+          <Display
+            name={JSON.stringify(recipes.name)}
+            ingredients={recipes.ingredients}
+            servings={recipes.servings}
+            instructions={recipes.instructions}
+            preptime={recipes.preptime}
+            tags={recipes.tags}
+          />
+        </div>
       ))}
     </div>
   );
