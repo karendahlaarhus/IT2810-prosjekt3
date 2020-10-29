@@ -10,12 +10,12 @@ const router = express.Router();
         const limit = req.query.limit && req.query.limit === 'none' ? 529 : 20;
         const skip = ((parseInt(page)-1) * 20);
         const search = req.query.name ? req.query.name.toLowerCase() : '';
-        //const tags = req.query.filters.toString().split(',');
+        const tags = req.query.tags.toString();
         const filter = {};
         
-        if (search/* tags.length !== 0 */) {
+        if (tags.length !== 0) {
             filter.$and = [
-             /*  { tags: { $in: tags } }, */
+              { tags: { $in: tags } }, 
               { name: {
                   $regex: search,
                   $options: 'i'}}
