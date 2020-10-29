@@ -23,7 +23,7 @@ export default function SortBar() {
 
   return (
     <div>
-      <select onChange={(e) => handleSortOption(e.target.value)}>
+      <select id="sortBar" onChange={(e) => handleSortOption(e.target.value)}>
         <option value="" disabled selected>
           Sort by
         </option>
