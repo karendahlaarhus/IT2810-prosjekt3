@@ -11,7 +11,7 @@ let Recipe = new Schema({
   },
   ingredients: [String],
   preptime: {
-    type: Number
+    type: [Number]
   },
   servings: {
     type: Number,

@@ -5,8 +5,11 @@
 import express from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
-import mongoose from "mongoose";
+import mongoose, { mongo } from "mongoose";
 import recipeRoutes from './recipeRoutes'
+import { connect } from "http2";
+import Recipe from "./recipe.model";
+import { monitorEventLoopDelay } from "perf_hooks";
 const PORT = 4000;
 
 mongoose.connect(
@@ -17,10 +20,48 @@ mongoose.connect(
       app.use(bodyParser.json());
 
   // API for uthenting av informasjon
-  
+
   // Routes
   app.use("/recipe", recipeRoutes);
-  // Routes
+  app.use(express.json());
+  
+  
+  
+  // app.put("/update/:id", (req, res) => {
+  //   //res.send("POST request to the homepage");
+  //   console.log(req.body);
+  //   const data = req.body;
+  //   //const newRecipeModel = new Recipe(data)
+  //   Recipe.findOneAndUpdate(req.body._id, req.body.preptime) //forstå 
+  //   console.log(req.body.preptime);
+  //   console.log(req.body.id);
+  // })
+
+  
+
+  // app.put("/id/:id", (req, res, next) => {
+  //   if(Recipe.find({_id: req.params.id})) {
+  //     Recipe.updateOne(req.body).then(data) => res.json(data)).catch(next);
+  //   }
+  //   else{
+  //     res.json({})
+  //   }
+  // })
+    
+    // ((error: any) => {
+    //   if(error){
+    //     res.status(500).json({status: "sorry, fail"})
+    //   }else{
+    //     res.json({
+    //       status: 'success',
+    //       prep: data.rating,
+    //     });
+
+    //   }
+    // })
+    
+ // })
+  //Routes
   app.get("/", (req, res) => {
     res.send("We are on home");
   })
@@ -28,6 +69,11 @@ mongoose.connect(
   app.listen(PORT, function () {
   console.log("Server is running on Port: " + PORT);
 });
+
+
+
+
+
 
 });
 
