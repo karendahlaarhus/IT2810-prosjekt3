@@ -13,6 +13,7 @@ export const FilterBar = () => {
             variant="contained"
             color="default"
             className='filterButton'
+            id='main'
             value='main'
             onClick={(e) => dispatch(updateFilter(e.currentTarget.value))}
           > Main
@@ -21,6 +22,7 @@ export const FilterBar = () => {
             variant="contained"
             color="default"
             className='filterButton'
+            id='dessert'
             value='dessert'
             onClick={(e) => dispatch(updateFilter(e.currentTarget.value))}>
         Dessert
@@ -29,6 +31,7 @@ export const FilterBar = () => {
             variant="contained"
             color="default"
             className='filterButton'
+            id='snack'
             value='snack'
             onClick={(e) => dispatch(updateFilter(e.currentTarget.value))}>  
         Snack
@@ -37,6 +40,7 @@ export const FilterBar = () => {
             variant="contained"
             color="default"
             className='filterButton'
+            id='vegetarian'
             value='vegetarian'
             onClick={(e) => dispatch(updateFilter(e.currentTarget.value))}>
         Vegetarian
@@ -45,6 +49,7 @@ export const FilterBar = () => {
             variant="contained"
             color="default"
             className='filterButton'
+            id='soup'
             value='soup'
             onClick={(e) => dispatch(updateFilter(e.currentTarget.value))}>
         Soup
