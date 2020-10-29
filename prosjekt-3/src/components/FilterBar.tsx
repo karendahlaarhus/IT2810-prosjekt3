@@ -1,10 +1,13 @@
 import React from "react";
-import { connect, useDispatch } from "react-redux";
+import { connect, useDispatch, useSelector } from "react-redux";
 import { updateFilter } from "../store/actions/action";
 import Button from '@material-ui/core/Button';
+import { RootState } from "../store/reducers";
 
 export const FilterBar = () => {
   const dispatch = useDispatch();
+
+  const filters = useSelector((state: RootState) => state.recipes.filterChoice);
 
   return (
 
