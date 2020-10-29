@@ -9,7 +9,7 @@ router.get("/", async (req, res) => {
     const limitAmount =
       req.query.limit && req.query.limit === "none" ? 151 : 10;
     const search = req.query.name;
-    const ascending = req.query.sortOrder;
+    /* const ascending = req.query.sortOrder;
     const sortBy = req.query.sortBy;
 
     function determineSort(_ascending) {
@@ -17,14 +17,14 @@ router.get("/", async (req, res) => {
       let sortParameter = { name: 1 };
 
       //sort desc
-      if (_ascending == false) {
+      if (_ascending === false) {
         console.log("sort by desc");
         sortParameter = { name: -1 };
       } else {
         console.log("sort by asc");
       }
       return sortParameter;
-    }
+    } */
 
     if (search) {
       //console.log("sort key: ", sortKey);
@@ -34,13 +34,13 @@ router.get("/", async (req, res) => {
           $options: "i",
         },
       })
-        .sort(determineSort(ascending))
+        //.sort(determineSort(ascending))
         .skip(skipAmount)
         .limit(limitAmount);
       res.json(recipe);
     } else {
       const recipe = await Recipe.find({})
-        .sort(determineSort(ascending))
+        //.sort(determineSort(ascending))
         .skip(skipAmount)
         .limit(limitAmount);
       res.json(recipe);

@@ -41,7 +41,7 @@ const RecipeDisplay: React.FC<IRecipeDisplay> = ({
         }}
         fullWidth
       >
-        {name.split('"').join("")}
+        {name}
       </Button>
       {/* Popup */}
       <Popup

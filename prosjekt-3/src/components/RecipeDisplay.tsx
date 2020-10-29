@@ -13,24 +13,13 @@ const mapState = (state: typeof initialState) => ({
   sortBy: state.name,
 });
 
-<<<<<<< HEAD
-/* interface IRecipeDisplay {
-  name: string;
-  ingredients: Array<String>;
-  servings: number;
-  instructions: Array<String>;
-  preptime: number;
-  tags: Array<String>;
-} */
-=======
 interface IRecipeDisplay {
-  name?: string;
+  name: string;
   ingredients?: Array<String>;
   servings?: number;
   instructions?: Array<String>;
   tags?: Array<String>;
 }
->>>>>>> dev
 
 const mapDispatch = {
   sendQuery: () => ({ type: "SEND_QUERY" }),
