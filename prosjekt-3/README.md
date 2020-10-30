@@ -146,6 +146,8 @@ Vi har brukt Jest for å skrive enhetstesting.
 
 ### Hvordan kjøre testene
 
+Start med å installere cypress lokalt med `npm install cypress`
+
 Ende-til-ende testene i Cypress startes ved å skrive `npm run cypress:open`. Cypress vil da åpnes i et eksternt vindu hvor man kan velge om man vil kjøre alle testene, eller kun enkelte av dem. 
 
 Enhetstestene kjøres ved å skrive `npm test`. 
