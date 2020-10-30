@@ -117,7 +117,7 @@ Resultat av enhetstester:
   
 
 ## Automatisert end-to-end testing
-
+![Cypress test](src/images/testCypress.png)
   
 
 End-to-end testing brukes for å teste hvorvidt flyten til en applikasjon fra start til slutt oppfører seg som den skal. At riktig data blir sendt fra databasen, gjennom apiet og hele veien til det brukeren ser.
