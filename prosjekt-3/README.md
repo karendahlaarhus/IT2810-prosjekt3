@@ -147,3 +147,4 @@ Enhetstestene kjøres ved å skrive `npm test`.
 - [Pagination og filtrering med Redux](https://soshace.com/filtering-sorting-and-pagination-advanced-filtering-with-react-and-redux/)
 - [Dropdown meny med React](https://dev.to/ramonak/react-how-to-dynamically-sort-an-array-of-objects-using-the-dropdown-with-react-hooks-195p)
 - [API for Cypress-testing](https://docs.cypress.io/api/api/table-of-contents.html)
+- [MongoDB Manual](https://docs.mongodb.com/manual/)
