@@ -67,13 +67,6 @@ describe("Select tags", () => {
       cy.get(
         "#vegetarian > .MuiButtonBase-root > .MuiIconButton-label > .PrivateSwitchBase-input-8"
       ).check();
-
-      /* cy.get(".filter-tags")
-        .invoke("val")
-        .should("deep.equal", ["main", "vegetarian"]); */
-
-      //remove the focus from the checkbox
-      //cy.get("samme id her").blur();
     });
   });
 });
