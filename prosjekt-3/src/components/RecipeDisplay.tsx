@@ -1,26 +1,24 @@
 import React, { useEffect, useState } from "react";
 import { connect, ConnectedProps, useSelector } from "react-redux";
 import { RootState } from "../store/reducers";
-import initialState from "../store/reducers/searchReducer";
-
+import { initialState } from "../store/reducers/searchReducer";
 import Display from "./Display";
-import Pagination from '@material-ui/lab/Pagination';
+import Pagination from "@material-ui/lab/Pagination";
 
 const mapState = (state: typeof initialState) => ({
   text: state.text,
   ascending: state.ascending, //Hva skal skrives her?
   sortBy: state.sortBy,
-  //text: state.name,
-  //filterChoice: state.tags
+  filterChoice: state.filterChoice,
 });
 
-interface IRecipeDisplay {
+/* interface IRecipeDisplay {
   name?: string;
   ingredients?: Array<String>;
   servings?: number;
   instructions?: Array<String>;
   tags?: Array<String>;
-} 
+}  */
 
 const mapDispatch = {
   sendQuery: () => ({ type: "SEND_QUERY" }),
@@ -28,8 +26,8 @@ const mapDispatch = {
   descName: () => ({ type: "DESC_NAME" }),
   ascServings: () => ({ type: "ASC_SERVINGs" }),
   descServings: () => ({ type: "DESC_SERVINGS" }),
-  updateFilter: () => ({type: "UPDATE_TYPE"})
-}
+  updateFilter: () => ({ type: "UPDATE_TYPE" }),
+};
 
 const connector = connect(mapState, mapDispatch);
 
@@ -38,29 +36,28 @@ type PropsFromRedux = ConnectedProps<typeof connector>;
 type Props = PropsFromRedux & {
   text: string;
   sortBy: string;
-  ascending: boolean; //Hva skrives her?
-  //updateFilter: 
+  ascending: boolean;
+  //updateFilter:
 };
-
 
 const RecipeDisplay = (props: Props) => {
   const [error, setError] = useState(false);
   const [recipes, setRecipes] = useState<any[]>([]);
-  const [openPopup, setOpenPopup] = useState(false);
-  const [value, setValue] = React.useState<number | null>(3); //rating value
+  //const [openPopup, setOpenPopup] = useState(false);
+  //const [value, setValue] = React.useState<number | null>(3); //rating value
   const [page, setPage] = React.useState(1);
 
   const handleChange = (event: any, value: React.SetStateAction<number>) => {
     setPage(value);
   };
 
-
   // Functionality for searching among the recipe titles
   const searchText = useSelector((state: RootState) => state.recipes.text);
-  //const recipes: Recipe[] = useSelector((state: RecipiesState) => state.recipes);
+
+  // Functionality for filtering among the recipes tags
   const filters = useSelector((state: RootState) => state.recipes.filterChoice);
 
-  // Functionality for sorting the recipes alphabetically
+  // Functionality for sorting the recipes by alphabet and no. of servings
   const sortInfo = useSelector((state: RootState) => state.recipes.sortBy);
   const ascending = useSelector((state: RootState) => state.recipes.ascending);
 
@@ -101,14 +98,13 @@ const RecipeDisplay = (props: Props) => {
             rating={recipes.rating}
             tags={recipes.tags}
           />
-        </div> 
+        </div>
       ))}
       <div>
-        <Pagination count={5} page={page} onChange={handleChange}/>
+        <Pagination count={5} page={page} onChange={handleChange} />
       </div>
     </div>
   );
 };
 
 export default connector(RecipeDisplay);
-
