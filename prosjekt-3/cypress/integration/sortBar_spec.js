@@ -15,7 +15,7 @@ describe("HTML select element", () => {
       cy.get("#sortBar").should("have.value", "name desc");
       cy.get(
         ":nth-child(3) > :nth-child(1) > .MuiButtonBase-root > .MuiButton-label"
-      ).should("have.text", '"White sangria"');
+      ).should("have.text", "White sangria");
     });
 
     it("sets to desc sorting, then back to asc sorting", () => {

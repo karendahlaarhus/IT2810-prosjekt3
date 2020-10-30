@@ -28,30 +28,30 @@ describe("Select tags", () => {
       // set using value
       // <div className="filter-tags">
       cy.get(
-        "#dessert > .MuiButtonBase-root > .MuiIconButton-label > .PrivateSwitchBase-input-8"
+        "#dessert > .MuiButtonBase-root > .MuiIconButton-label > .PrivateSwitchBase-input-4"
       ).check();
       cy.get(
-        "#dessert > .MuiButtonBase-root > .MuiIconButton-label > .PrivateSwitchBase-input-8"
+        "#dessert > .MuiButtonBase-root > .MuiIconButton-label > .PrivateSwitchBase-input-4"
       ).uncheck();
     });
     it("sets a tag and checks that the first recipe is updated", () => {
       cy.get(
-        "#soup > .MuiButtonBase-root > .MuiIconButton-label > .PrivateSwitchBase-input-8"
+        "#soup > .MuiButtonBase-root > .MuiIconButton-label > .PrivateSwitchBase-input-4"
       ).check();
 
       cy.get(
         ":nth-child(3) > :nth-child(1) > .MuiButtonBase-root > .MuiButton-label"
-      ).should("have.text", '"Vegetarian Chili"');
+      ).should("have.text", "Vegetarian Chili");
     });
 
     it("sets a tag and verifies that the recipe's tag matches", () => {
       cy.get(
-        "#soup > .MuiButtonBase-root > .MuiIconButton-label > .PrivateSwitchBase-input-8"
+        "#soup > .MuiButtonBase-root > .MuiIconButton-label > .PrivateSwitchBase-input-4"
       ).check();
       cy.get(
         ":nth-child(1) > :nth-child(1) > .MuiButtonBase-root > .MuiButton-label"
       ).trigger("click");
-      cy.get(".MuiDialogContent-root > :nth-child(4)").contains("soup");
+      cy.get(".MuiDialogContent-root > :nth-child(3)").contains("soup");
     });
   });
 
@@ -61,25 +61,25 @@ describe("Select tags", () => {
     });
     it("sets multiple tags", () => {
       cy.get(
-        "#main > .MuiButtonBase-root > .MuiIconButton-label > .PrivateSwitchBase-input-8"
+        "#main > .MuiButtonBase-root > .MuiIconButton-label > .PrivateSwitchBase-input-4"
       ).check();
 
       cy.get(
-        "#vegetarian > .MuiButtonBase-root > .MuiIconButton-label > .PrivateSwitchBase-input-8"
+        "#vegetarian > .MuiButtonBase-root > .MuiIconButton-label > .PrivateSwitchBase-input-4"
       ).check();
     });
     it("sets two tags and verifies that the recipe's tags matches", () => {
       cy.get(
-        "#soup > .MuiButtonBase-root > .MuiIconButton-label > .PrivateSwitchBase-input-8"
+        "#soup > .MuiButtonBase-root > .MuiIconButton-label > .PrivateSwitchBase-input-4"
       ).check();
       cy.get(
-        "#main > .MuiButtonBase-root > .MuiIconButton-label > .PrivateSwitchBase-input-8"
+        "#main > .MuiButtonBase-root > .MuiIconButton-label > .PrivateSwitchBase-input-4"
       ).check();
 
       cy.get(
         ":nth-child(5) > :nth-child(1) > .MuiButtonBase-root > .MuiButton-label"
       ).trigger("click");
-      cy.get(".MuiDialogContent-root > :nth-child(4)")
+      cy.get(".MuiDialogContent-root > :nth-child(3)")
         .should("contain", "soup")
         .and("contain", "main");
     });

@@ -3,11 +3,11 @@
 describe("Search in search field", () => {
   context("User searching", () => {
     beforeEach(() => {
-      cy.visit("/");
+      cy.visit("/").wait(1000);
     });
 
     it("renders the frontpage", () => {
-      cy.visit("/");
+      cy.visit("/").wait(1000);
     });
 
     it("search field available", () => {
@@ -34,7 +34,7 @@ describe("Search in search field", () => {
     it("searches and sets tags", () => {
       cy.get("#outlined-basic").type("pie");
       cy.get(
-        "#dessert > .MuiButtonBase-root > .MuiIconButton-label > .PrivateSwitchBase-input-8"
+        "#dessert > .MuiButtonBase-root > .MuiIconButton-label > .PrivateSwitchBase-input-4"
       )
         .trigger("click")
         .wait(1500);
@@ -45,7 +45,7 @@ describe("Search in search field", () => {
         "contain",
         "Pie"
       );
-      cy.get(".MuiDialogContent-root > :nth-child(4)").contains("dessert");
+      cy.get(".MuiDialogContent-root > :nth-child(3)").contains("dessert");
     });
   });
 });
