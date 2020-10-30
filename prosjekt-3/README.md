@@ -108,10 +108,11 @@ Denne testingen ga positive resultater, og vi fant at all ønsket funksjonalitet
 
 Enhetstesting brukes for å teste individuelle komponenter i software. Enhetstester skrives for å sikre at koden virker som den skal. Dette hjelper med å detektere og beskytte mot bugs i fremtiden.
 
-  
 
 For enhetstesning har vi brukt [Jest](https://jestjs.io/).
 
+Resultat av enhetstester:
+![Unit test](src/images/testScreen.png)
 
   
 
