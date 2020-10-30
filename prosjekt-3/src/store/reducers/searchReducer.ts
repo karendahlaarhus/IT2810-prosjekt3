@@ -1,4 +1,3 @@
-<<<<<<< prosjekt-3/src/store/reducers/searchReducer.ts
 import {
   SEND_QUERY,
   ASC_NAME,

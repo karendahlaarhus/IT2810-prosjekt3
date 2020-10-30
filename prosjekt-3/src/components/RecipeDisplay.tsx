@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { connect, ConnectedProps, useSelector } from "react-redux";
 import { RootState } from "../store/reducers";
-import Popup from "./Popup";
-import { connect, ConnectedProps, useDispatch, useSelector } from "react-redux";
 import initialState from "../store/reducers/searchReducer";
+
 import Display from "./Display";
 import Pagination from '@material-ui/lab/Pagination';
 
@@ -29,8 +28,8 @@ const mapDispatch = {
   descName: () => ({ type: "DESC_NAME" }),
   ascServings: () => ({ type: "ASC_SERVINGs" }),
   descServings: () => ({ type: "DESC_SERVINGS" }),
-  //updateFilter: () => ({type: "UPDATE_TYPE"})
-
+  updateFilter: () => ({type: "UPDATE_TYPE"})
+}
 
 const connector = connect(mapState, mapDispatch);
 

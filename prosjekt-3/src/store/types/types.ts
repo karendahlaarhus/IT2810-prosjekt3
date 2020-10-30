@@ -42,4 +42,4 @@ export type FrontendActionTypes =
   | descName
   | descServings
   | ascServings
-  |updateFilter;
+  | updateFilter;

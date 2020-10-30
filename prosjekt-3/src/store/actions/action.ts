@@ -43,12 +43,6 @@ export function sortAscServings(sortingKey: string): FrontendActionTypes {
   };
 }
 
-export function sendQuery(searchQuery: string):FrontendActionTypes{
-    return{
-        type:SEND_QUERY,
-        payload: searchQuery
-    }
-}
 
 export function updateFilter(filterType: string):FrontendActionTypes{
     console.log(filterType)
