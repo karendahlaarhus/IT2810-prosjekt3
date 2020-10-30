@@ -7,9 +7,7 @@ export const FilterBar = () => {
   const dispatch = useDispatch();
 
   return (
-
     <div className="filter-tags">
-
       <FormControlLabel
         id="main"
         control={<Checkbox value='main' color="primary" onChange={(e) => dispatch(updateFilter(e.currentTarget.value))}  />}

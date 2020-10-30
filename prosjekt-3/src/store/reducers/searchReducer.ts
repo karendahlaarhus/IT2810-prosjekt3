@@ -31,7 +31,8 @@ export default function searchReducer(
       return {
         ...state,
         text: action.payload,
-      };
+    }
+    
     case UPDATE_TYPE:
       let filterChoice = state.filterChoice.slice();
 
@@ -45,19 +46,33 @@ export default function searchReducer(
       return {
         ...state,
         filterChoice,
-      };
+     }
+    
     case ASC_NAME:
       return {
         ...state,
         sortBy: "name",
         ascending: true,
-      };
+        }
+
     case DESC_NAME:
-      return { ...state, sortBy: "name", ascending: false };
+      return { 
+          ...state, 
+          sortBy: "name", 
+          ascending: false 
+        }
     case ASC_SERVINGS:
-      return { ...state, sortBy: "servings", ascending: true };
+      return { 
+          ...state, 
+          sortBy: "servings", 
+          ascending: true 
+        }
     case DESC_SERVINGS:
-      return { ...state, sortBy: "servings", ascending: false };
+      return { 
+          ...state, 
+          sortBy: "servings", 
+          ascending: false 
+        }
     default:
       return state;
   }

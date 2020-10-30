@@ -1,11 +1,11 @@
 import {
   FrontendActionTypes,
   SEND_QUERY,
+  UPDATE_TYPE,
   ASC_NAME,
   DESC_NAME,
   DESC_SERVINGS,
   ASC_SERVINGS,
-  UPDATE_TYPE
 } from "../types/types";
 
 export function sendQuery(searchQuery: string): FrontendActionTypes {
@@ -13,6 +13,14 @@ export function sendQuery(searchQuery: string): FrontendActionTypes {
     type: SEND_QUERY,
     payload: searchQuery,
   };
+}
+
+export function updateFilter(filterType: string):FrontendActionTypes{
+  console.log(filterType)
+  return{
+      type: UPDATE_TYPE,
+      payload: filterType
+  }
 }
 
 export function sortAscName(sortingKey: string): FrontendActionTypes {
@@ -44,10 +52,3 @@ export function sortAscServings(sortingKey: string): FrontendActionTypes {
 }
 
 
-export function updateFilter(filterType: string):FrontendActionTypes{
-    console.log(filterType)
-    return{
-        type: UPDATE_TYPE,
-        payload: filterType
-    }
-}
