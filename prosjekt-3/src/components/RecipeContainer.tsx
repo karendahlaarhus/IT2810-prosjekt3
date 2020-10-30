@@ -6,7 +6,6 @@ import RecipeDisplay from './RecipeDisplay'
 import { Typography } from "@material-ui/core";
 
 
-
 export default function RecipeContainer() {
   return (
     <div>
