@@ -18,16 +18,30 @@
 
 .choices {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  padding: 20px 0px 20px 0px;
+  /* border: 1px;
+  border-style: solid;
+  border-color: transparent;
+  background-color: #e8f5e9;
+  border-radius: 5px; */
 }
 
 .sortDiv{
   display: flex;
   justify-content: center;
+  
 }
 .filterDiv{
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
 }
 
+ .paginationBtn{
+   display: flex;
+   justify-content: center;
+ }
 
+ .recipeDisplay{
+   padding-top: 5px;
+ }

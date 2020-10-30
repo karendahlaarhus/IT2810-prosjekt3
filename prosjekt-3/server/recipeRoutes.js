@@ -24,8 +24,8 @@ router.route("/:id").get(function (req, res) {
 router.get("/", async (req, res, e) => {
   try {
     const page = req.query.page;
-    const limit = req.query.limit && req.query.limit === "none" ? 529 : 15;
-    const skip = (parseInt(page) - 1) * 15;
+    const limit = req.query.limit && req.query.limit === "none" ? 529 : 10;
+    const skip = (parseInt(page) - 1) * 10;
     const search = req.query.name ? req.query.name.toLowerCase() : "";
     const tags = req.query.tags.toString().split(',');
     const sortOrder = req.query.sortOrder;
@@ -72,8 +72,6 @@ router.get("/", async (req, res, e) => {
     };
     
     if (filter) {
-      console.log('hei skjra')
-      console.log(filter)
       const recipe = await Recipe.find(filter)
         .sort(determineSort(sortOrder, sortBy))
         .skip(skip)

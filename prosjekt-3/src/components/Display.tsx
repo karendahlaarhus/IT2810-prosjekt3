@@ -5,6 +5,8 @@ import Button from "@material-ui/core/Button";
 import Chip from "@material-ui/core/Chip";
 import { Rating } from "@material-ui/lab";
 import { Box, Typography } from "@material-ui/core";
+import brown from "@material-ui/core/colors/brown";
+const color = brown[50];
 
 const axios = require("axios").default;
 
@@ -50,15 +52,16 @@ const RecipeDisplay: React.FC<IRecipeDisplay> = ({
       <Button
         className="newButton"
         onClick={() => setOpenPopup(true)}
-        variant="outlined"
+        variant='contained'
         size="large"
         style={{
           textTransform: "lowercase",
           textAlign: "left",
+          backgroundColor: color,
         }}
         fullWidth
       >
-        {name}
+        {name.split('"').join("")}
       </Button>
 
       {/* Popup */}
@@ -68,7 +71,7 @@ const RecipeDisplay: React.FC<IRecipeDisplay> = ({
         setOpenPopup={setOpenPopup}
       >
         <Box component="fieldset" mb={3} borderColor="transparent">
-          <Typography component="legend">Rating</Typography>
+          <Typography component="legend" >Rating</Typography>
           <Rating
             name="simple-controlled"
             value={rating}
@@ -91,9 +94,6 @@ const RecipeDisplay: React.FC<IRecipeDisplay> = ({
 
         <p>
           <b>Number of servings:</b> {servings}
-        </p>
-        <p>
-          <b>Preparation time: </b> {preptime}
         </p>
 
         <p>

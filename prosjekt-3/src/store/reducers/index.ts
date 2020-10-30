@@ -1,8 +1,8 @@
 import { combineReducers } from "redux";
-import searchReducer from "./searchReducer";
+import appReducer from "./appReducer";
 
 const rootReducer = combineReducers({
-  recipes: searchReducer,
+  recipes: appReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

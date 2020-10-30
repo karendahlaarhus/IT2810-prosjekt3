@@ -1,20 +1,19 @@
 import React from "react";
-import { BrowserRouter as Router } from "react-router-dom";
-import "../styles/App.css";
 import { Provider } from "react-redux";
-
 import RecipeContainer from "./RecipeContainer";
 import store from "../store/store";
-import { Typography } from "@material-ui/core";
+import "../styles/App.css";
+import header from "../images/foods.jpg";
 
 function App() {
   return (
-    <div style={{ padding: "0 7vw 0 7vw" }}>
+    <div style={{ padding: "10vw", backgroundImage: `url(${header})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', zoom:1}}>
       <Provider store={store}>
-        <Router>
-          <br></br>
-          <RecipeContainer />
-        </Router>
+      
+        
+        <div style={{zIndex:1, backgroundColor: "white", opacity: 0.95}}>
+        <RecipeContainer />
+        </div>
       </Provider>
     </div>
   );

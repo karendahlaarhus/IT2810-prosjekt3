@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { fireAction } from "../store/reducers/searchReducer";
+import { fireAction } from "../store/reducers/appReducer";
 
 export default function SortBar() {
   const dispatch = useDispatch();

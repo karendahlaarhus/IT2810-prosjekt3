@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { connect, ConnectedProps, useSelector } from "react-redux";
-import { RootState } from "../store/reducers";
-import { initialState } from "../store/reducers/searchReducer";
-import Display from "./Display";
 import Pagination from "@material-ui/lab/Pagination";
+import { RootState } from "../store/reducers";
+import { initialState } from "../store/reducers/appReducer";
+import Display from "./Display";
+
 
 const mapState = (state: typeof initialState) => ({
   text: state.text,
@@ -26,6 +27,7 @@ const connector = connect(mapState, mapDispatch);
 type PropsFromRedux = ConnectedProps<typeof connector>;
 
 const RecipeDisplay = (props: PropsFromRedux) => {
+  // eslint-disable-next-line
   const [error, setError] = useState(false);
   const [recipes, setRecipes] = useState<any[]>([]);
   const [page, setPage] = React.useState(1);
@@ -84,8 +86,9 @@ const RecipeDisplay = (props: PropsFromRedux) => {
           />
         </div>
       ))}
-      <div>
-        <Pagination count={5} page={page} onChange={handleChange} />
+      <div style={{marginTop: '10px'}}>
+        <br/><br/>
+        <Pagination className='paginationBtn' count={5} page={page} onChange={handleChange} />
       </div>
     </div>
   );

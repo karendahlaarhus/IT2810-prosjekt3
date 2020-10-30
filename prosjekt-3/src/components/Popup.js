@@ -14,7 +14,7 @@ export default function Popup(props) {
       <Dialog open={openPopup} maxWidth="md">
         <DialogTitle>
           <div style={{ display: "flex" }}>
-            <Typography style={{ flexGrow: 1 }} variant="h6" component="div">
+            <Typography style={{ flexGrow: 1, fontFamily: "Futura", color:'#35281e' }} variant="h6" component="div">
               {title}
             </Typography>
             <Button
