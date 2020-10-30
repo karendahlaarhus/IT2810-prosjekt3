@@ -7,7 +7,7 @@ import Pagination from "@material-ui/lab/Pagination";
 
 const mapState = (state: typeof initialState) => ({
   text: state.text,
-  ascending: state.ascending, //Hva skal skrives her?
+  ascending: state.ascending, 
   sortBy: state.sortBy,
   filterChoice: state.filterChoice,
 });
@@ -33,20 +33,21 @@ const connector = connect(mapState, mapDispatch);
 
 type PropsFromRedux = ConnectedProps<typeof connector>;
 
-type Props = PropsFromRedux & {
+/*  type Props = PropsFromRedux & {
   text: string;
   sortBy: string;
   ascending: boolean;
-  //updateFilter:
-};
+  //updateFilter: Array;
+}; */
 
-const RecipeDisplay = (props: Props) => {
+const RecipeDisplay = (props: PropsFromRedux) => {
   const [error, setError] = useState(false);
   const [recipes, setRecipes] = useState<any[]>([]);
   //const [openPopup, setOpenPopup] = useState(false);
   //const [value, setValue] = React.useState<number | null>(3); //rating value
   const [page, setPage] = React.useState(1);
 
+  //sets pagenumber
   const handleChange = (event: any, value: React.SetStateAction<number>) => {
     setPage(value);
   };

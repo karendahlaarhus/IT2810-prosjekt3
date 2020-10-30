@@ -3,8 +3,6 @@ import { sendQuery } from "../store/actions/action";
 import { connect, useDispatch } from "react-redux";
 import {
   FormGroup,
-  IconButton,
-  InputAdornment,
   TextField,
 } from "@material-ui/core";
 import { text } from "body-parser";

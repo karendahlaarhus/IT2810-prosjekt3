@@ -12,30 +12,32 @@ export const FilterBar = () => {
 
       <FormControlLabel
         id="main"
-        value="main"
-        control={<Checkbox color="primary" onChange={(e) => dispatch(updateFilter(e.currentTarget.value))}  />}
+        control={<Checkbox value='main' color="primary" onChange={(e) => dispatch(updateFilter(e.currentTarget.value))}  />}
         label="Main"
         labelPlacement="end"
       />
       <FormControlLabel
         id="vegetarian"
-        value="vegetarian"
-        control={<Checkbox color="primary" onClick={(e) => dispatch(updateFilter(e.currentTarget.value))}  />}
+        control={<Checkbox value='vegetarian' color="primary" onClick={(e) => dispatch(updateFilter(e.currentTarget.value))}  />}
         label="Vegetarian"
         labelPlacement="end"
       />
       <FormControlLabel
         id="dessert"
-        value="dessert"
-        control={<Checkbox color="primary"  onClick={(e) => dispatch(updateFilter(e.currentTarget.value))} />}
+        control={<Checkbox value='dessert' color="primary"  onClick={(e) => dispatch(updateFilter(e.currentTarget.value))} />}
         label="Dessert"
         labelPlacement="end"
       />
       <FormControlLabel
         id="soup"
-        value="soup"
-        control={<Checkbox color="primary" onClick={(e) => dispatch(updateFilter(e.currentTarget.value))} />}
+        control={<Checkbox value='soup' color="primary" onClick={(e) => dispatch(updateFilter(e.currentTarget.value))} />}
         label="Soup"
+        labelPlacement="end"
+      />
+      <FormControlLabel
+        id="snack"
+        control={<Checkbox value='snack' color="primary" onClick={(e) => dispatch(updateFilter(e.currentTarget.value))} />}
+        label="Snack"
         labelPlacement="end"
       />
     </div>
@@ -44,7 +46,7 @@ export const FilterBar = () => {
 }
 
 const mapStateToProps = (state: { recipes: { filterChoice: [] } }) => ({
-    text: state.recipes.filterChoice,
+  filterChoice: state.recipes.filterChoice,
   });
   
 export default connect(mapStateToProps)(FilterBar);
