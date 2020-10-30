@@ -38,16 +38,12 @@ router.get("/", async (req, res, e) => {
       let sortParameter = { };
       //sort desc
       if (order === "desc" && by === "servings") {
-        console.log("sort", sortOrder, "sort by", sortBy);
         sortParameter = { servings: -1 };
       } else if (order === "desc" && by === "name") {
-        console.log("sort", sortOrder, "sort by", sortBy);
         sortParameter = { name: -1 };
       } else if (order === "asc" && by === "servings") {
-        console.log("sort", sortOrder, "sort by", sortBy);
         sortParameter = { servings: 1 };
       } else if (order === "asc" && by === "name") {
-        console.log("sort", sortOrder, "sort by", sortBy);
         sortParameter = { name: 1 };
       }
       return sortParameter;
