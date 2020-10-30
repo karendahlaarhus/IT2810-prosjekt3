@@ -37,20 +37,18 @@ export default function searchReducer(
     }
     
     case UPDATE_TYPE:
-      let filterChoice = state.filterChoice.slice();
-
-      if (filterChoice.some((choice) => choice === action.payload)) {
-        filterChoice = filterChoice.filter(
-          (choice) => choice !== action.payload
-        );
-      } else {
-        filterChoice.push(action.payload);
-      }
-      return {
-        ...state,
-        filterChoice,
-     }
-    
+        let filterChoice = state.filterChoice.slice();
+            
+        if (filterChoice.some(choice => choice === action.payload)) {
+            filterChoice = filterChoice.filter(choice => choice !== action.payload)
+        } 
+        else {
+            filterChoice.push(action.payload);            
+        }      
+        return{
+            ...state,
+            filterChoice
+        }
     case ASC_NAME:
       return {
         ...state,

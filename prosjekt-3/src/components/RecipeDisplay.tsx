@@ -77,13 +77,13 @@ const RecipeDisplay = (props: PropsFromRedux) => {
       let sortOrder = sortOrderToString(ascending);
       console.log(searchText);
       const response = await fetch(
-        `http://localhost:4000/recipe?page=${page}name=${searchText}&sortBy=${sortInfo}&sortOrder=${sortOrder}&tags=${filters}`
+        `http://localhost:4000/recipe?page=${page}name=${searchText}&tags=${filters}&sortBy=${sortInfo}&sortOrder=${sortOrder}`
       );
       const data = await response.json().catch((error) => setError(error));
       setRecipes(data);
     }
     fetchData();
-  }, [page, searchText, sortInfo, ascending, filters]);
+  }, [page, searchText, filters, sortInfo, ascending]);
 
   return (
     <div className="recipes">
