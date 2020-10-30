@@ -40,11 +40,11 @@ describe("Select tags", () => {
       ).check();
 
       cy.get(
-        ":nth-child(1) > :nth-child(1) > .MuiButtonBase-root > .MuiButton-label"
-      ).contains('"Vegetarian Chili"');
+        ":nth-child(3) > :nth-child(1) > .MuiButtonBase-root > .MuiButton-label"
+      ).should("have.text", '"Vegetarian Chili"');
     });
 
-    it("sets a tag an verifies that the recipe's tag matches", () => {
+    it("sets a tag and verifies that the recipe's tag matches", () => {
       cy.get(
         "#soup > .MuiButtonBase-root > .MuiIconButton-label > .PrivateSwitchBase-input-8"
       ).check();
@@ -67,6 +67,21 @@ describe("Select tags", () => {
       cy.get(
         "#vegetarian > .MuiButtonBase-root > .MuiIconButton-label > .PrivateSwitchBase-input-8"
       ).check();
+    });
+    it("sets two tags and verifies that the recipe's tags matches", () => {
+      cy.get(
+        "#soup > .MuiButtonBase-root > .MuiIconButton-label > .PrivateSwitchBase-input-8"
+      ).check();
+      cy.get(
+        "#main > .MuiButtonBase-root > .MuiIconButton-label > .PrivateSwitchBase-input-8"
+      ).check();
+
+      cy.get(
+        ":nth-child(5) > :nth-child(1) > .MuiButtonBase-root > .MuiButton-label"
+      ).trigger("click");
+      cy.get(".MuiDialogContent-root > :nth-child(4)")
+        .should("contain", "soup")
+        .and("contain", "main");
     });
   });
 });
