@@ -12,14 +12,6 @@ const mapState = (state: typeof initialState) => ({
   filterChoice: state.filterChoice,
 });
 
-/* interface IRecipeDisplay {
-  name?: string;
-  ingredients?: Array<String>;
-  servings?: number;
-  instructions?: Array<String>;
-  tags?: Array<String>;
-}  */
-
 const mapDispatch = {
   sendQuery: () => ({ type: "SEND_QUERY" }),
   ascName: () => ({ type: "ASC_NAME" }),
@@ -33,21 +25,12 @@ const connector = connect(mapState, mapDispatch);
 
 type PropsFromRedux = ConnectedProps<typeof connector>;
 
-/*  type Props = PropsFromRedux & {
-  text: string;
-  sortBy: string;
-  ascending: boolean;
-  //updateFilter: Array;
-}; */
-
 const RecipeDisplay = (props: PropsFromRedux) => {
   const [error, setError] = useState(false);
   const [recipes, setRecipes] = useState<any[]>([]);
-  //const [openPopup, setOpenPopup] = useState(false);
-  //const [value, setValue] = React.useState<number | null>(3); //rating value
   const [page, setPage] = React.useState(1);
 
-  //sets pagenumber
+  //Handles change in pagenumber
   const handleChange = (event: any, value: React.SetStateAction<number>) => {
     setPage(value);
   };

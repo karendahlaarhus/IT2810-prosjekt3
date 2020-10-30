@@ -31,11 +31,6 @@ const RecipeDisplay: React.FC<IRecipeDisplay> = ({
   const [openPopup, setOpenPopup] = useState(false);
   const [rating, setRating] = useState<any>(); //rating value
 
-  // useEffect(()=> {
-  //   async () => {
-  //   const result = await axios("http://localhost:4000/recipe/:id");
-  //   setRating(result.data);
-  // }, []);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -46,32 +41,11 @@ const RecipeDisplay: React.FC<IRecipeDisplay> = ({
     fetchData();
   }, []);
 
-  //lag en useEffect for å hente datahttps://www.robinwieruch.de/react-hooks-fetch-data
-
-  //lage state på preptime
-
-  //onSubmit(e: any) {
-
-  // const data = { rating, preptime, _id };
-  // const options = {
-  //   method: "PUT",
-  //   headers: {
-  //     "Content-type": "application/json",
-  //   },
-  //   body: JSON.stringify(data),
-  // };
-  // //fetch("/update/:id", options);
-  // async function fetchData() {
-  //   const response = await fetch(`http://localhost:4000/update/:id`, options);
-  //   const json = await response.json();
-  //   console.log(json);
-  // }
-
-  //fetchData();
 
   return (
     <div>
       {/* buttons for recipes, click on button and popup with recipe displays */}
+      
       <br />
       <Button
         className="newButton"
@@ -86,6 +60,7 @@ const RecipeDisplay: React.FC<IRecipeDisplay> = ({
       >
         {name}
       </Button>
+
       {/* Popup */}
       <Popup
         title={name.split('"').join("")}
@@ -100,7 +75,6 @@ const RecipeDisplay: React.FC<IRecipeDisplay> = ({
             defaultValue={preptime}
             onChange={(event, newRating) => {
               setRating(newRating);
-              //console.log(newRating);
               const obj = {
                 _id: _id,
                 rating: newRating,
@@ -135,8 +109,10 @@ const RecipeDisplay: React.FC<IRecipeDisplay> = ({
             ))}
         </p>
         <br></br>
+
         {/* flexbox container used to display ingredients and instructions side by side */}
         <div style={{ display: "flex", justifyContent: "space-around" }}>
+
           {/* Ingredients: */}
           <div
             style={{
@@ -153,12 +129,13 @@ const RecipeDisplay: React.FC<IRecipeDisplay> = ({
                 .split(",")
                 .map((item) => (
                   <>
-                    {" "}
-                    {item} <br />{" "}
+                    {''}
+                    {item} <br />{''}
                   </>
                 ))}
             </p>
           </div>
+
           {/* Instuctions:  */}
           <div style={{ paddingLeft: "5%" }}>
             <p>

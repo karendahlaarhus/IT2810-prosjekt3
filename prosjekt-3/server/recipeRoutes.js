@@ -4,13 +4,11 @@ import Recipe from "./recipe.model";
 const router = express.Router();
 
 router.route("/update/:id").put(function (req, res) {
-  console.log(req.body); //vil lagre denne verdien til databasen
   const filter = { id: req.body._id };
   const update = { preptime: req.body.preptime };
   Recipe.findOneAndUpdate(filter, update, {
     new: true,
   }).then((data) => {
-    console.log("hei");
     res.json(data);
   });
 });
@@ -21,7 +19,6 @@ router.route("/:id").get(function (req, res) {
     res.json(recipe);
   });
 });
-
 
 
 router.get("/", async (req, res, e) => {
@@ -57,21 +54,13 @@ router.get("/", async (req, res, e) => {
     }
      
     if (tags[0].length === 0) {
-      /* filter.name = {
-        $regex: search,
-        $options: "i"}
-      } */
-
       filter.$and = [
-        
         { name: {
           $regex: search,
           $options: "i",
         },
-        //name: new RegExp(search, 'i')}
-        
-
-        }];}
+      }];
+    }
     else{
       filter.$and = [
         { tags: { $in: tags } },
@@ -79,16 +68,9 @@ router.get("/", async (req, res, e) => {
           $regex: search,
           $options: "i",
         },
-        //name: new RegExp(search, 'i')}
-        
-
-        }];
-      
+      }];
     };
-    /* filter.name = {
-        name: new RegExp(search, 'i')}
-    }  */
-    console.log(filter)
+    
     if (filter) {
       console.log('hei skjra')
       console.log(filter)
@@ -108,26 +90,5 @@ router.get("/", async (req, res, e) => {
     res.json({ message: err });
   }
 });
-
-// let id = req.params._id;
-// console.log(id);
-// Recipe.findById(id, function (err, recipe) {
-//   const rating = req.body.rating;
-//   if (rating !== null && rating !== "") {
-//     //preptime = recipe.rating;
-//     const oldRating = [...Recipe.rating];
-//     Recipe.rating = [...oldRating, rating];
-//   }
-//   Recipe.save()
-//     .then((recipe) => {
-//       res.json("Rating" + rating);
-//       console.log(rating);
-//     })
-//     .catch((err) => {
-//       res.status(400).send("Rating not given");
-//     });
-// });
-
-//for å hente ut kun et element
 
 export default router;

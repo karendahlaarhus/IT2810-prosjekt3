@@ -7,12 +7,14 @@ import header from "./foods.jpg";
 import SortBar from "./SortBar";
 
 
+
 export default function RecipeContainer() {
   return (
     <div style={{ padding: "0vw 8vw 0vw 8vw" }}>
       <div style={{ width: "100%", overflow: "hidden", height: "15vw" }}>
         <img
           src={header}
+          alt='headerimage'
           style={{
             //width: "100%",
             height: "530px",
@@ -33,8 +35,15 @@ export default function RecipeContainer() {
       </Typography>
       <br></br>
       <SearchBar />
-      <SortBar />
-      <FilterBar/>
+      <div className='choices'>
+      <div className='filterDiv'>
+          <FilterBar/>
+        </div>
+        <div className='sortDiv'> 
+          <SortBar />
+        </div>
+        
+      </div>
       <RecipeDisplay />
       
     </div>
