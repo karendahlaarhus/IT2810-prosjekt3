@@ -44,6 +44,8 @@ Fra filen `server/server.ts` skriv `nodemon server` i kommandolinjen for å star
 
 Nå serveren kjører kan man starte klientsiden ved å først skrive `npm install`, og deretter `npm start`
 
+Fungerer ikke dette er det mulig at du ikke har node installert. Det kan du installere her: https://nodejs.org/en/download/
+
   
 
 # Frontend
@@ -128,6 +130,7 @@ Enhetstesting brukes for å teste individuelle komponenter i software. Enhetstes
   
 
 For enhetstesning har vi brukt [Jest](https://jestjs.io/).
+
 
   
 
