@@ -23,9 +23,9 @@ export default function SortBar() {
           Sort by
         </option>
         {/* Ascending values are not working for some reason ..  */}
-        {/* <option value="name asc">Alphabet - A-Z</option> */}
+        <option value="name asc">Alphabet - A-Z</option> 
         <option value="name desc">Alphabet - Z-A</option>
-        {/* <option value="servings asc">Servings - ascending </option> */}
+        <option value="servings asc">Servings - ascending </option>
         <option value="servings desc">Servings - descending</option>
       </select>
     </div>

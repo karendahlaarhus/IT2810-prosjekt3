@@ -40,7 +40,7 @@ router.get("/", async (req, res, e) => {
 
     function determineSort(order, by) {
       //default sort is alphabetical after recipe name
-      let sortParameter = { name: -1 };
+      let sortParameter = { };
       //sort desc
       if (order === "desc" && by === "servings") {
         console.log("sort", sortOrder, "sort by", sortBy);
