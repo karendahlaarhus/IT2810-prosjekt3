@@ -4,8 +4,8 @@
 
 Bon appétit er en nettapplikasjon som gir mulighet til å søke blant hundrevis av oppskrifter. For å finne ønsket oppskrift kan brukeren både søke, sortere og filtrere. Oppskriftene presenteres med navn i listeform, og kan trykkes på for å få mer informasjon om ingredienser, fremgangsmåte og antall porsjoner. Her har også brukeren mulighet til å legge til en "rating" av oppskriften.
 
-![Screenshot bon appétit](Screenshot1.jpg)
-![Screenshot detail](Screenshot2.jpg)
+![Screenshot bon appétit](./images/Screenshot1.jpg)
+![Screenshot detail](./images/Screenshot2.jpg)
 
 Prosjektet bruker den populære MERN-stacken: MongoDB, Express(.js), React(.js) og Node(.js).
 
