@@ -16,25 +16,25 @@ export const FilterBar = () => {
       />
       <FormControlLabel
         id="vegetarian"
-        control={<Checkbox value='vegetarian' color="primary" onClick={(e) => dispatch(updateFilter(e.currentTarget.value))}  />}
+        control={<Checkbox value='vegetarian' color="primary" onChange={(e) => {console.log(e.currentTarget.value); dispatch(updateFilter(e.currentTarget.value))}} />}
         label="Vegetarian"
         labelPlacement="end"
       />
       <FormControlLabel
         id="dessert"
-        control={<Checkbox value='dessert' color="primary"  onClick={(e) => dispatch(updateFilter(e.currentTarget.value))} />}
+        control={<Checkbox value='dessert' color="primary"  onChange={(e) => dispatch(updateFilter(e.currentTarget.value))} />}
         label="Dessert"
         labelPlacement="end"
       />
       <FormControlLabel
         id="soup"
-        control={<Checkbox value='soup' color="primary" onClick={(e) => dispatch(updateFilter(e.currentTarget.value))} />}
+        control={<Checkbox value='soup' color="primary" onChange={(e) => dispatch(updateFilter(e.currentTarget.value))} />}
         label="Soup"
         labelPlacement="end"
       />
       <FormControlLabel
         id="snack"
-        control={<Checkbox value='snack' color="primary" onClick={(e) => dispatch(updateFilter(e.currentTarget.value))} />}
+        control={<Checkbox value='snack' color="primary" onChange={(e) => dispatch(updateFilter(e.currentTarget.value))} />}
         label="Snack"
         labelPlacement="end"
       />
