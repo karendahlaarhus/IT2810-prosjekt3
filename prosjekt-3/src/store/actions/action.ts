@@ -5,6 +5,7 @@ import {
   DESC_NAME,
   DESC_SERVINGS,
   ASC_SERVINGS,
+  UPDATE_TYPE
 } from "../types/types";
 
 export function sendQuery(searchQuery: string): FrontendActionTypes {
@@ -40,4 +41,19 @@ export function sortAscServings(sortingKey: string): FrontendActionTypes {
     type: ASC_SERVINGS,
     payload: sortingKey,
   };
+}
+
+export function sendQuery(searchQuery: string):FrontendActionTypes{
+    return{
+        type:SEND_QUERY,
+        payload: searchQuery
+    }
+}
+
+export function updateFilter(filterType: string):FrontendActionTypes{
+    console.log(filterType)
+    return{
+        type: UPDATE_TYPE,
+        payload: filterType
+    }
 }
