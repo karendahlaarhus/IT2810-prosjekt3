@@ -3,35 +3,24 @@
 ## Funksjonalitet
 
 Bon appétit er en nettapplikasjon som gir mulighet til å søke blant hundrevis av oppskrifter. For å finne ønsket oppskrift kan brukeren både søke, sortere og filtrere. Oppskriftene presenteres med navn i listeform, og kan trykkes på for å få mer informasjon om ingredienser, fremgangsmåte og antall porsjoner. Her har også brukeren mulighet til å legge til en "rating" av oppskriften.
+Applikasjonen støtter søk etter oppskrifts-navn, filtrering basert på type, samt alfabetisk sortering etter navn, og sortrering på antall porsjoner.
 
-![Screenshot bon appétit]
-(src/images/Screenshot2.png)
+Det er også implementert funksjonalitet for brukergenerert rating av oppskriftene, dette blir gjort på en intuitiv måte ved å klikke på det antallet stjerner brukeren mener oppskriften fortjener. Vurderingen lagres deretter persistent i databasen. Ratingen som vises er siste rating som er lagt inn av en bruker. Dersom en oppskrift ikke har noen rating betyr det at ingen har ratet oppskriften enda.
 
-![Screenshot detail]
-(/src/images/Screenshot1.png)
+![Screenshot bon appétit](src/images/Screenshot2.png)
+
+![Screenshot detail](src/images/Screenshot1.png)
 
 Prosjektet bruker den populære MERN-stacken: MongoDB, Express(.js), React(.js) og Node(.js).
 
 Brukergrensesnitt er basert på React med Typescript, og prosjektet er initialisert med `create-react-app --typescript`.
 
+Serversiden (backend) er basert på Node, Express og MongoDB. Alt av sortering, filtrering og søk løses i backend ved kall til databasen, og gjøres på hele resultatsettet.  
 
-Serversiden (backend) er
-
-  
-
-Applikasjonen støtter søk etter oppskrifts-navn, filtrering basert på type, samt alfabetisk sortering etter navn, og sortrering på antall porsjoner.
-
-  
-
-Det er også implementert funksjonalitet for brukergenerert rating av oppskriftene, dette blir gjort på en intuitiv måte ved å klikke på det antallet stjerner brukeren mener oppskriften fortjener. Vurderingen lagres deretter persistent i databasen. Ratingen som vises er siste rating som er lagt inn av en bruker. Dersom en oppskrift ikke har noen rating betyr det at ingen har ratet oppskriften enda.
-
-  
 
 # Kjøre prosjektet
 
-For å kunne kjøre prosjektet og hente data må man være koblet til NTNU-nett, enten gjennom eduroam eller VPN.
-
-
+For å kunne kjøre prosjektet og hente data må man være koblet til NTNU-nett, enten gjennom eduroam eller VPN. 
 Server og klient startes hver for seg.
 
 ### Server
@@ -87,27 +76,15 @@ Alle Redux-komponentene ligger i mappen `store`.
 ## Material UI
 Vi har benyttet Material UI rammeverket til design av nettsiden. Dette har vi brukt for å effektivt kunne sette opp et fint design og spare tid på denne delen av utviklingen. Dessuten kommer Material UI rammeverket med stilrene komponenter som til enhver tid sørger for at applikasjonen er responsiv i forhold til skjermstørrelsen som benyttes. Material UI er benyttet for å style søkefelt, ulike knapper, pop-up bokser og rating, samt fonter.
 
+Siden Material UI bidrar med det meste av styling, har vi lagt små stilendringer inline i komponentene og i App.css.
   
 
 # Backend
 
-  
-
-## Endepunkt
-
-  
-
-## Express
-
-  
-
 ## MongoDB
-
-  
 
 For database benyttet vi oss av MongoDB som er en del av MERN-stacken. MongoDB strukturerer og lagrer data i json-format. Dataen i databasen vår har vi hentet fra et api på json-format, det kan finnes her: https://github.com/tabatkins/recipe-db/blob/master/db-recipes.json
 
-  
 
 Vi installerte MongoDB på den virtuelle maskinen. Etter vi hadde gjort dette brukte vi MongoDB Compass på lokal maskin for å se eksisterende data og legge inn nye data.
  
