@@ -1,5 +1,4 @@
 import express from "express";
-import { monitorEventLoopDelay } from "perf_hooks";
 import Recipe from "./recipe.model";
 
 const router = express.Router();
@@ -25,17 +24,16 @@ router.route("/:id").get(function (req, res) {
 
 
 
-
 router.get("/", async (req, res, e) => {
   try {
     const page = req.query.page;
     const limit = req.query.limit && req.query.limit === "none" ? 529 : 15;
     const skip = (parseInt(page) - 1) * 15;
     const search = req.query.name ? req.query.name.toLowerCase() : "";
-    const tags = req.query.tags.toString();
+    const tags = req.query.tags.toString().split(',');
     const sortOrder = req.query.sortOrder;
     const sortBy = req.query.sortBy;
-    const filter = {};
+    let filter = {};
     
 
     function determineSort(order, by) {
@@ -57,22 +55,27 @@ router.get("/", async (req, res, e) => {
       }
       return sortParameter;
     }
+     
 
-    if (tags.length !== 0) {
+    if (tags.length >= 0) {
       filter.$and = [
         { tags: { $in: tags } },
         {
-          name: {
+        name: new RegExp(search, 'i')
+          /* name: {
             $regex: search,
             $options: "i",
           },
-        },
-      ];
+
+        } */}];
     } else {
-      filter.name = {
+      /* filter.name = {
         $regex: search,
         $options: "i",
       };
+    } */
+      filter.name = {
+        name: new RegExp(search, 'i')}
     }
 
     if (filter) {

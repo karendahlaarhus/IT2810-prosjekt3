@@ -1,5 +1,5 @@
 import SearchBar from './SearchBar'
-import FilterBar from './FilterBar'
+import FilterBar from './FilterButtons'
 import React from 'react'
 import RecipeDisplay from './RecipeDisplay'
 import { Typography } from "@material-ui/core";
