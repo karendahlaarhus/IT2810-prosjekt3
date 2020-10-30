@@ -48,25 +48,25 @@ Nå serveren kjører kan man starte klientsiden ved å først skrive `npm instal
 
 # Frontend
 
-  
 
 Brukergrensesnittet er basert på React, Typescript og Redux. React og Typescript er valgt på bakgrunn av kravspesifikasjonene, mens Redux ble valgt da ingen av gruppemedlemmene hadde erfaring med noen form for state management, og etter å ha undersøkt de forskjellige mulighetene satt vi igjen med inntrykk av at det var lettere å komme i gang med.
 
   
 
-## React
 
 
 ## Redux
 
 
-For tilstandshåndtering har vi valgt å implementere prosjektet med Redux. Dette er hensiktsmessig siden applikasjonen skal støtte ulike former for brukerinteraksjon, samt at vi har valgt å dele applikasjonen inn i mange ulike komponenter. Ved bruk av Redux er det enkelt å håndtere forandringer av tilstand når brukeren interagerer med applikasjonen, og sende dette rundt i applikasjonen til de komponentene som har bruk for informasjonen til enhver tid.
+For tilstandshåndtering har vi valgt å implementere prosjektet med Redux. Dette er hensiktsmessig siden applikasjonen skal støtte ulike former for brukerinteraksjon, samt at vi har valgt å dele applikasjonen inn i mange ulike komponenter. Applikasjonen inneholder mange datasett som endres seg fortløpende som følger av brukerinteraksjonen, og vi så det derfor hensiktsmessig å benytte oss av Redux. 
 
-I `src/components/store/types/types.ts` ligger de ulike handlingene som kan utføres. Dette er henholdvis handlinger tilknyttet søk, filtrering og sortering av datasettet. Ved hjelp av Redux kan vi enkelt sende nåværende tilstand rundt i applikasjonen, og igjen hente dette ut på serversiden.
+Ved bruk av en state manager som Redux er det enkelt å håndtere forandringer av tilstand på de ulike datasettene, og sende dette rundt i applikasjonen til de komponentene som har bruk for informasjonen til enhver tid.
+
+I `src/components/store/types/types.ts` ligger de ulike handlingene som kan utføres. Dette er henholdvis handlinger tilknyttet søk, filtrering og sortering av datasettet. Ved hjelp av Redux kan vi enkelt sende nåværende tilstand rundt i applikasjonen, og igjen hente dette ut på serversiden. 
+
+Vi har også benyttet Redux for å implementere pagination, slik at brukeren enkelt kan bla i datasettet uten at applikasjonen oppleves som treg. 
 
 Alle Redux-komponentene ligger i mappen `store`.
-
-  
 
 -  `src/store/actions/actions.ts` inneholder funksjoner for de ulike handlingene en applikasjonen støtter, altså _hva_ som endrer seg.
 
@@ -79,10 +79,7 @@ Alle Redux-komponentene ligger i mappen `store`.
   
 
 ## Material UI
-
-  
-
-Vi har benyttet Material UI rammeverket til design av nettsiden. Dette har vi brukt for å effektivt kunne sette opp et fint design og spare tid på denne delen av utviklingen. Dessuten kommer Material UI rammeverket med stilrene komponenter. Vi har brukt Material UI for søkefelt, ulike knapper, pop-up bokser og rating.
+Vi har benyttet Material UI rammeverket til design av nettsiden. Dette har vi brukt for å effektivt kunne sette opp et fint design og spare tid på denne delen av utviklingen. Dessuten kommer Material UI rammeverket med stilrene komponenter som til enhver tid sørger for at applikasjonen er responsiv i forhold til skjermstørrelsen som benyttes. Material UI er benyttet for å style søkefelt, ulike knapper, pop-up bokser og rating, samt fonter.
 
   
 
@@ -107,11 +104,7 @@ For database benyttet vi oss av MongoDB som er en del av MERN-stacken. MongoDB s
   
 
 Vi installerte MongoDB på den virtuelle maskinen. Etter vi hadde gjort dette brukte vi MongoDB Compass på lokal maskin for å se eksisterende data og legge inn nye data.
-
-  
-
-## Nodemon
-
+ 
   
 
 # Testing
@@ -123,10 +116,6 @@ I tillegg har vi brukt cross-browser testing for å sikre at nettsiden har lik f
 
   
 Denne testingen ga positive resultater, og vi fant at all ønsket funksjonalitet fungerte likt i de ulike nettleserne og enhetene, i tillegg til at siden er responsiv.
-
-  
-
-## Hvordan kjøre testene
 
   
 
@@ -150,12 +139,24 @@ End-to-end testing brukes for å teste hvorvidt flyten til en applikasjon fra st
 
   
 
-Vi har benyttet [cypress](https://www.cypress.io/) for å lage automatisert ende til ende testing.
+Vi har benyttet [cypress](https://www.cypress.io/) for å lage automatisert ende-til-ende testing.
+Vi har brukt Jest for å skrive enhetstesting. 
 
   
 
 ### Hvordan kjøre testene
 
-  
+Ende-til-ende testene i Cypress startes ved å skrive `npm run cypress:open`. Cypress vil da åpnes i et eksternt vindu hvor man kan velge om man vil kjøre alle testene, eller kun enkelte av dem. 
 
-# Dokumentasjon
+Enhetstestene kjøres ved å skrive `npm test`. 
+
+**NB:** Både server og klient må kjøre i bakgrunnen for at testene skal kunne kjøre. Testene kjøres fra `prosjekt-3`-mappen
+
+
+
+  
+# Inspirasjon og kilder 
+- [Redux med React Typescript](https://redux.js.org/recipes/usage-with-typescript)
+- [Pagination og filtrering med Redux](https://soshace.com/filtering-sorting-and-pagination-advanced-filtering-with-react-and-redux/)
+- [Dropdown meny med React](https://dev.to/ramonak/react-how-to-dynamically-sort-an-array-of-objects-using-the-dropdown-with-react-hooks-195p)
+- [API for Cypress-testing](https://docs.cypress.io/api/api/table-of-contents.html)
