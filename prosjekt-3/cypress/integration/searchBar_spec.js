@@ -1,13 +1,11 @@
 /*  Test for the SeachBar component */
 
-const { isContext } = require("vm");
-
-beforeEach(() => {
-  cy.visit("/");
-});
-
 describe("Search in search field", () => {
   context("User searching", () => {
+    beforeEach(() => {
+      cy.visit("/");
+    });
+
     it("renders the frontpage", () => {
       cy.visit("/");
     });
@@ -29,6 +27,10 @@ describe("Search in search field", () => {
     });
   });
   context("User searching and filtering", () => {
+    beforeEach(() => {
+      cy.visit("/");
+    });
+
     it("searches and sets tags", () => {
       cy.get("#outlined-basic").type("pie");
       cy.get(
