@@ -56,29 +56,42 @@ router.get("/", async (req, res, e) => {
       return sortParameter;
     }
      
-
-    if (tags.length >= 0) {
-      filter.$and = [
-        { tags: { $in: tags } },
-        {
-        name: new RegExp(search, 'i')
-          /* name: {
-            $regex: search,
-            $options: "i",
-          },
-
-        } */}];
-    } else {
+    if (tags[0].length === 0) {
       /* filter.name = {
         $regex: search,
-        $options: "i",
-      };
-    } */
-      filter.name = {
-        name: new RegExp(search, 'i')}
-    }
+        $options: "i"}
+      } */
 
+      filter.$and = [
+        
+        { name: {
+          $regex: search,
+          $options: "i",
+        },
+        //name: new RegExp(search, 'i')}
+        
+
+        }];}
+    else{
+      filter.$and = [
+        { tags: { $in: tags } },
+        { name: {
+          $regex: search,
+          $options: "i",
+        },
+        //name: new RegExp(search, 'i')}
+        
+
+        }];
+      
+    };
+    /* filter.name = {
+        name: new RegExp(search, 'i')}
+    }  */
+    console.log(filter)
     if (filter) {
+      console.log('hei skjra')
+      console.log(filter)
       const recipe = await Recipe.find(filter)
         .sort(determineSort(sortOrder, sortBy))
         .skip(skip)
