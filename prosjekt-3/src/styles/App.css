@@ -1,0 +1,47 @@
+/* Style The Dropdown Button */
+#sortBar {
+  background-color: white;
+  color: black;
+  margin-top: 11px;
+  padding: none;
+  font-size: 12px;
+  border-radius: 3px;
+  border-color: grey;
+  border-width: 2px;
+  cursor: pointer;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.choices {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 0px 20px 0px;
+  /* border: 1px;
+  border-style: solid;
+  border-color: transparent;
+  background-color: #e8f5e9;
+  border-radius: 5px; */
+}
+
+.sortDiv{
+  display: flex;
+  justify-content: center;
+  
+}
+.filterDiv{
+  display: flex;
+  justify-content: space-evenly;
+}
+
+ .paginationBtn{
+   display: flex;
+   justify-content: center;
+ }
+
+ .recipeDisplay{
+   padding-top: 5px;
+ }
