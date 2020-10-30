@@ -17,7 +17,9 @@ Det er også implementert funksjonalitet for brukergenerert rating av oppskrifte
 
 # Kjøre prosjektet
 
-For å kunne kjøre prosjektet, må server og klient startes hver for seg.
+For å kunne kjøre prosjektet og hente data må man være koblet til NTNU-nett, enten gjennom eduroam eller VPN.
+
+Server og klient startes hver for seg.
 
 ### Server
 
@@ -45,10 +47,10 @@ I `src/components/store/types/types.ts` kan man se de ulike handlingene som kan 
 
 Redux-komponentene ligger alle plassert i mappen `store`.
 
-- `store/actions/actions.ts` ligger det funksjoner for de ulike handlingene en applikasjonen støtter, altså _hva_ som endrer seg.
-- `store/reducer/index.ts` kombinerer reducers
-- `store/reducer/searchReducer.ts` spesifieres _hvordan_ applikasjonens state endrer seg i henhold til spesifisere handlinger (actions).
-- `store/store.ts` holder kontroll på nåværende state, og gjør at man kan oppdatere state eller hente state fra andre steder i applikasjonen.
+- `src/store/actions/actions.ts` ligger det funksjoner for de ulike handlingene en applikasjonen støtter, altså _hva_ som endrer seg.
+- `src/store/reducer/index.ts` kombinerer reducers
+- `src/store/reducer/searchReducer.ts` spesifieres _hvordan_ applikasjonens state endrer seg i henhold til spesifisere handlinger (actions).
+- `src/store/store.ts` holder kontroll på nåværende state, og gjør at man kan oppdatere state eller hente state fra andre steder i applikasjonen.
 
 ## Material UI
 
@@ -57,6 +59,8 @@ Vi har benyttet Material UI rammeverket til design av nettsiden. Dette har vi br
 # Backend
 
 ## Endepunkt
+
+## Express
 
 ## MongoDB
 
