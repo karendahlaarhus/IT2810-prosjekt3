@@ -4,6 +4,7 @@ import React from 'react'
 import RecipeDisplay from './RecipeDisplay'
 import { Typography } from "@material-ui/core";
 import header from "./foods.jpg";
+import SortBar from "./SortBar";
 
 
 export default function RecipeContainer() {
@@ -32,6 +33,7 @@ export default function RecipeContainer() {
       </Typography>
       <br></br>
       <SearchBar />
+      <SortBar />
       <FilterBar/>
       <RecipeDisplay />
       

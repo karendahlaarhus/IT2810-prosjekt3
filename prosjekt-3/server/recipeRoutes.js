@@ -31,6 +31,29 @@ router.route("/:id").get(function (req, res) {
         const search = req.query.name ? req.query.name.toLowerCase() : '';
         const tags = req.query.tags.toString();
         const filter = {};
+        const sortOrder = req.query.sortOrder;
+        const sortBy = req.query.sortBy;
+
+        function determineSort(order, by) {
+          //default sort is alphabetical after recipe name
+          let sortParameter = { name: -1 };
+    
+          //sort desc
+          if (order === "desc" && by === "servings") {
+            console.log("sort", sortOrder, "sort by", sortBy);
+            sortParameter = { servings: -1 };
+          } else if (order === "desc" && by === "name") {
+            console.log("sort", sortOrder, "sort by", sortBy);
+            sortParameter = { name: -1 };
+          } else if (order === "asc" && by === "servings") {
+            console.log("sort", sortOrder, "sort by", sortBy);
+            sortParameter = { servings: 1 };
+          } else if (order === "asc" && by === "name") {
+            console.log("sort", sortOrder, "sort by", sortBy);
+            sortParameter = { name: 1 };
+          }
+          return sortParameter;
+        }
         
         if (tags.length !== 0) {
             filter.$and = [
@@ -49,12 +72,14 @@ router.route("/:id").get(function (req, res) {
       
         if(filter) {
           const recipe = await Recipe.find(filter)
-              .skip(skip)
-              .limit(limit)
-              res.json(recipe);
-          }
+            .sort(determineSort(sortOrder, sortBy))
+            .skip(skip)
+            .limit(limit)
+            res.json(recipe);
+        }
         else{
           const recipe = await Recipe.find()
+            .sort(determineSort(sortOrder, sortBy))
             .skip(skip) 
             .limit(limit)
             res.json(recipe);
