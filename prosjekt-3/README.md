@@ -111,7 +111,8 @@ Enhetstesting brukes for å teste individuelle komponenter i software. Enhetstes
 
 For enhetstesning har vi brukt [Jest](https://jestjs.io/).
 
-Resultat av enhetstester:
+Resultat av enhetstestene:  
+
 ![Unit test](src/images/testScreen.png)
 
   
@@ -125,7 +126,6 @@ End-to-end testing brukes for å teste hvorvidt flyten til en applikasjon fra st
   
 
 Vi har benyttet [cypress](https://www.cypress.io/) for å lage automatisert ende-til-ende testing.
-Vi har brukt Jest for å skrive enhetstesting. 
 
   
 
