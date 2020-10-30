@@ -8,18 +8,21 @@ import {
   FrontendActionTypes,
 } from "../types/types";
 
+
+
 interface Recipe {
   text: string;
+  filterChoice: string[];
   sortBy: string;
   ascending: boolean;
-  filterChoice: string[];
+ 
 }
 
 export const initialState: Recipe = {
   text: "",
+  filterChoice: [],
   sortBy: "",
   ascending: true,
-  filterChoice: [],
 };
 
 export default function searchReducer(
