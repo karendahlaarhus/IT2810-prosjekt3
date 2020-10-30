@@ -1,11 +1,10 @@
-import SearchBar from './SearchBar'
-import FilterBar from './FilterBar'
-import React from 'react'
-import RecipeDisplay from './RecipeDisplay'
+import SearchBar from "./SearchBar";
+import FilterBar from "./FilterBar";
+import React from "react";
+import RecipeDisplay from "./RecipeDisplay";
 import { Typography } from "@material-ui/core";
 import header from "./foods.jpg";
 import SortBar from "./SortBar";
-
 
 export default function RecipeContainer() {
   return (
@@ -34,9 +33,8 @@ export default function RecipeContainer() {
       <br></br>
       <SearchBar />
       <SortBar />
-      <FilterBar/>
+      <FilterBar />
       <RecipeDisplay />
-      
     </div>
   );
 }
