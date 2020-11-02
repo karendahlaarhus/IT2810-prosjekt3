@@ -1,5 +1,5 @@
-import { connect, useDispatch } from "react-redux";
 import React from "react";
+import { connect, useDispatch } from "react-redux";
 import { updateFilter } from "../store/actions/action";
 import { Checkbox, FormControlLabel } from "@material-ui/core";
 
@@ -75,7 +75,7 @@ export const FilterBar = () => {
   );
 };
 
-const mapStateToProps = (state: { recipes: { filterChoice: [] } }) => ({
+const mapStateToProps = (state: { recipes: { filterChoice: string[] } }) => ({
   filterChoice: state.recipes.filterChoice,
 });
 
