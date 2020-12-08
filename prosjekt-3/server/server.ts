@@ -7,14 +7,11 @@ import bodyParser from "body-parser";
 import cors from "cors";
 import mongoose, { mongo } from "mongoose";
 import recipeRoutes from './recipeRoutes'
-import { connect } from "http2";
-import Recipe from "./recipe.model";
-import { monitorEventLoopDelay } from "perf_hooks";
-const PORT = 4000;
+const PORT = 3000;
 
 mongoose.connect(
-  "mongodb://recipedb:recipedb@it2810-36.idi.ntnu.no:27017/recipedb?authSource=recipedb",
-  {useNewUrlParser: true,}).then(() => {
+  "mongodb://recipedb:recipedb@localhost:27017/recipedb?authSource=recipedb",
+  {useNewUrlParser: true, useUnifiedTopology: true, }).then(() => {
       const app = express();
       app.use(cors());
       app.use(bodyParser.json());
@@ -26,41 +23,6 @@ mongoose.connect(
   app.use(express.json());
   
   
-  
-  // app.put("/update/:id", (req, res) => {
-  //   //res.send("POST request to the homepage");
-  //   console.log(req.body);
-  //   const data = req.body;
-  //   //const newRecipeModel = new Recipe(data)
-  //   Recipe.findOneAndUpdate(req.body._id, req.body.preptime) //forstå 
-  //   console.log(req.body.preptime);
-  //   console.log(req.body.id);
-  // })
-
-  
-
-  // app.put("/id/:id", (req, res, next) => {
-  //   if(Recipe.find({_id: req.params.id})) {
-  //     Recipe.updateOne(req.body).then(data) => res.json(data)).catch(next);
-  //   }
-  //   else{
-  //     res.json({})
-  //   }
-  // })
-    
-    // ((error: any) => {
-    //   if(error){
-    //     res.status(500).json({status: "sorry, fail"})
-    //   }else{
-    //     res.json({
-    //       status: 'success',
-    //       prep: data.rating,
-    //     });
-
-    //   }
-    // })
-    
- // })
   //Routes
   app.get("/", (req, res) => {
     res.send("We are on home");

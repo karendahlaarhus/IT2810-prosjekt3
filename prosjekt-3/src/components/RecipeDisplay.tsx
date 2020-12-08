@@ -62,7 +62,7 @@ const RecipeDisplay = (props: PropsFromRedux) => {
       let sortOrder = sortOrderToString(ascending);
       console.log(searchText);
       const response = await fetch(
-        `http://localhost:4000/recipe?page=${page}&name=${searchText}&tags=${filters}&sortBy=${sortInfo}&sortOrder=${sortOrder}`
+        `http://it2810-36.idi.ntnu.no:3000/recipe?page=${page}&name=${searchText}&tags=${filters}&sortBy=${sortInfo}&sortOrder=${sortOrder}`
       );
       const data = await response.json().catch((error) => setError(error));
       setRecipes(data);
